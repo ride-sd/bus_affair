@@ -1,0 +1,30 @@
+export type FuelType = 'CNG' | 'Electric' | 'Diesel' | 'LPG';
+
+export interface BusModel {
+	manufacturer: string;
+	model: string;
+	lengthFt: number;
+	fuelType: FuelType;
+	yearIntroduced: number;
+	division?: string;
+}
+
+export interface Trip {
+	id: string;
+	busNumber: number;
+	timestamp: string;
+	busModel: BusModel | null;
+}
+
+export interface FleetEntry {
+	rangeStart: number;
+	rangeEnd: number;
+	model: BusModel;
+}
+
+export interface TripService {
+	getTrips(): Promise<Trip[]>;
+	addTrip(busNumber: number): Promise<Trip>;
+	deleteTrip(id: string): Promise<void>;
+	clearAllTrips(): Promise<void>;
+}
