@@ -1,4 +1,4 @@
-import type { Trip, TripType } from '$lib/models/types';
+import type { GeoLocation, Trip, TripType } from '$lib/models/types';
 import { createTripService } from '$lib/services/trip-service';
 
 const service = createTripService();
@@ -23,8 +23,8 @@ export const tripStore = {
 		loading = false;
 	},
 
-	async addTrip(busNumber: number, mtsLine?: string, type?: TripType) {
-		const trip = await service.addTrip(busNumber, mtsLine, type);
+	async addTrip(busNumber: number, mtsLine?: string, type?: TripType, location?: GeoLocation) {
+		const trip = await service.addTrip(busNumber, mtsLine, type, location);
 		trips = [trip, ...trips];
 		return trip;
 	},

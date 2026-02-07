@@ -51,6 +51,22 @@
 				</button>
 			{/if}
 		</div>
-		<p class="text-sm text-base-content/60">{formatTime(trip.timestamp)}</p>
+		<div class="flex items-center gap-2">
+			<p class="text-sm text-base-content/60">{formatTime(trip.timestamp)}</p>
+			{#if trip.location}
+				<a
+					href="https://www.google.com/maps?q={trip.location.latitude},{trip.location.longitude}"
+					target="_blank"
+					rel="noopener noreferrer"
+					class="inline-flex items-center gap-1 text-sm text-base-content/60 hover:text-primary"
+					aria-label="View location on map"
+				>
+					<svg xmlns="http://www.w3.org/2000/svg" class="h-3.5 w-3.5" viewBox="0 0 20 20" fill="currentColor">
+						<path fill-rule="evenodd" d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z" clip-rule="evenodd" />
+					</svg>
+					Map
+				</a>
+			{/if}
+		</div>
 	</div>
 </div>
