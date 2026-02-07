@@ -1,4 +1,4 @@
-import type { Trip, TripService, TripType } from '$lib/models/types';
+import type { GeoLocation, Trip, TripService, TripType } from '$lib/models/types';
 import { lookupBusModel } from './bus-lookup';
 
 const STORAGE_KEY = 'bus-affair-trips';
@@ -23,7 +23,7 @@ export function createLocalStorageTripService(): TripService {
 			return loadTrips();
 		},
 
-		async addTrip(busNumber: number, mtsLine?: string, type?: TripType): Promise<Trip> {
+		async addTrip(busNumber: number, mtsLine?: string, type?: TripType, location?: GeoLocation): Promise<Trip> {
 			const tripType = type ?? 'boarded';
 			const trip: Trip = {
 				id: crypto.randomUUID(),
@@ -31,7 +31,8 @@ export function createLocalStorageTripService(): TripService {
 				timestamp: new Date().toISOString(),
 				busModel: lookupBusModel(busNumber),
 				...(mtsLine && { mtsLine }),
-				type: tripType
+				type: tripType,
+				...(location && { location })
 			};
 			const trips = loadTrips();
 			trips.unshift(trip);

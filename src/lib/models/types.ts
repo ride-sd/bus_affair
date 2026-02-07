@@ -12,6 +12,11 @@ export interface BusModel {
 	description?: string;
 }
 
+export interface GeoLocation {
+	latitude: number;
+	longitude: number;
+}
+
 export interface Trip {
 	id: string;
 	busNumber: number;
@@ -19,6 +24,7 @@ export interface Trip {
 	busModel: BusModel | null;
 	mtsLine?: string;
 	type?: TripType;
+	location?: GeoLocation;
 }
 
 export interface FleetEntry {
@@ -29,7 +35,7 @@ export interface FleetEntry {
 
 export interface TripService {
 	getTrips(): Promise<Trip[]>;
-	addTrip(busNumber: number, mtsLine?: string, type?: TripType): Promise<Trip>;
+	addTrip(busNumber: number, mtsLine?: string, type?: TripType, location?: GeoLocation): Promise<Trip>;
 	deleteTrip(id: string): Promise<void>;
 	clearAllTrips(): Promise<void>;
 }

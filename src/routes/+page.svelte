@@ -4,13 +4,16 @@
 	import BusNumberInput from '$lib/components/BusNumberInput.svelte';
 	import TripList from '$lib/components/TripList.svelte';
 	import { tripStore } from '$lib/stores/trip-store.svelte';
+	import { getCurrentLocation, requestLocationPermission } from '$lib/services/geolocation';
 
 	onMount(() => {
 		tripStore.load();
+		requestLocationPermission();
 	});
 
 	async function handleSubmit(busNumber: number, mtsLine?: string, type?: TripType) {
-		await tripStore.addTrip(busNumber, mtsLine, type);
+		const location = (await getCurrentLocation()) ?? undefined;
+		await tripStore.addTrip(busNumber, mtsLine, type, location);
 	}
 </script>
 
