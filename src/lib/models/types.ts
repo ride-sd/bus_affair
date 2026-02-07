@@ -7,6 +7,7 @@ export interface BusModel {
 	fuelType: FuelType;
 	yearIntroduced: number;
 	division?: string;
+	description?: string;
 }
 
 export interface Trip {

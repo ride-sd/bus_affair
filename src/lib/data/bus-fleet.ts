@@ -9,7 +9,9 @@ export const fleet: FleetEntry[] = [
 			model: 'Low Floor CNG 40\'',
 			lengthFt: 40,
 			fuelType: 'CNG',
-			yearIntroduced: 2015
+			yearIntroduced: 2015,
+			description:
+				'Standard 40-foot low-floor CNG bus by Gillig. A workhorse of the MTS fleet with accessible boarding and compressed natural gas power.'
 		}
 	},
 	{
@@ -20,7 +22,9 @@ export const fleet: FleetEntry[] = [
 			model: 'XN40',
 			lengthFt: 40,
 			fuelType: 'CNG',
-			yearIntroduced: 2025
+			yearIntroduced: 2025,
+			description:
+				'Brand-new Xcelsior CHARGE NG 40-foot CNG buses. The newest addition to the MTS fleet, featuring modern amenities and improved fuel efficiency.'
 		}
 	},
 	{
@@ -31,7 +35,9 @@ export const fleet: FleetEntry[] = [
 			model: 'C40LFR',
 			lengthFt: 40,
 			fuelType: 'CNG',
-			yearIntroduced: 2012
+			yearIntroduced: 2012,
+			description:
+				'New Flyer C40LFR low-floor CNG transit bus. One of the older workhorses in the fleet, these buses have been reliably serving San Diego routes since 2012.'
 		}
 	},
 	{
@@ -42,7 +48,9 @@ export const fleet: FleetEntry[] = [
 			model: 'Low Floor CNG 40\'',
 			lengthFt: 40,
 			fuelType: 'CNG',
-			yearIntroduced: 2013
+			yearIntroduced: 2013,
+			description:
+				'Gillig low-floor 40-foot CNG bus from the 2013 order. Part of a mid-2010s fleet expansion for fixed-route service.'
 		}
 	},
 	{
@@ -53,7 +61,9 @@ export const fleet: FleetEntry[] = [
 			model: 'Low Floor CNG 40\'',
 			lengthFt: 40,
 			fuelType: 'CNG',
-			yearIntroduced: 2014
+			yearIntroduced: 2014,
+			description:
+				'A small batch of Gillig low-floor CNG buses from 2014. Shares the same reliable platform as the 800-series with minor updates.'
 		}
 	},
 	{
@@ -64,7 +74,9 @@ export const fleet: FleetEntry[] = [
 			model: 'XN60',
 			lengthFt: 60,
 			fuelType: 'CNG',
-			yearIntroduced: 2013
+			yearIntroduced: 2013,
+			description:
+				'60-foot articulated CNG bus with a bendable joint for high-capacity routes. Among the first XN60 articulateds in the MTS fleet.'
 		}
 	},
 	{
@@ -75,7 +87,9 @@ export const fleet: FleetEntry[] = [
 			model: 'XN60',
 			lengthFt: 60,
 			fuelType: 'CNG',
-			yearIntroduced: 2015
+			yearIntroduced: 2015,
+			description:
+				'Articulated 60-foot New Flyer CNG bus. Used on MTS Rapid and other high-ridership corridors where extra passenger capacity is needed.'
 		}
 	},
 	{
@@ -86,7 +100,9 @@ export const fleet: FleetEntry[] = [
 			model: 'Low Floor CNG 40\'',
 			lengthFt: 40,
 			fuelType: 'CNG',
-			yearIntroduced: 2017
+			yearIntroduced: 2017,
+			description:
+				'Gillig low-floor CNG 40-footer from a 2017 delivery. Features updated interiors compared to earlier Gillig batches.'
 		}
 	},
 	{
@@ -97,7 +113,9 @@ export const fleet: FleetEntry[] = [
 			model: 'XE40',
 			lengthFt: 40,
 			fuelType: 'Electric',
-			yearIntroduced: 2019
+			yearIntroduced: 2019,
+			description:
+				'One of the first battery-electric buses in the MTS fleet. These Xcelsior CHARGE 40-footers were a pilot for zero-emission transit in San Diego.'
 		}
 	},
 	{
@@ -108,7 +126,9 @@ export const fleet: FleetEntry[] = [
 			model: 'Low Floor Plus EV 40\'',
 			lengthFt: 40,
 			fuelType: 'Electric',
-			yearIntroduced: 2020
+			yearIntroduced: 2020,
+			description:
+				'Gillig\'s battery-electric variant of their proven low-floor platform. Part of MTS\'s early zero-emission rollout alongside the New Flyer XE40s.'
 		}
 	},
 	{
@@ -119,7 +139,9 @@ export const fleet: FleetEntry[] = [
 			model: 'Low Floor CNG 40\'',
 			lengthFt: 40,
 			fuelType: 'CNG',
-			yearIntroduced: 2020
+			yearIntroduced: 2020,
+			description:
+				'A large 2020 order of Gillig low-floor CNG buses. These 40-footers helped replace aging vehicles across multiple MTS routes.'
 		}
 	},
 	{
@@ -130,7 +152,9 @@ export const fleet: FleetEntry[] = [
 			model: 'XN60',
 			lengthFt: 60,
 			fuelType: 'CNG',
-			yearIntroduced: 2021
+			yearIntroduced: 2021,
+			description:
+				'Articulated 60-foot CNG bus for high-demand corridors. Features the updated Xcelsior interior with improved passenger amenities.'
 		}
 	},
 	{
@@ -141,7 +165,9 @@ export const fleet: FleetEntry[] = [
 			model: 'XN60',
 			lengthFt: 60,
 			fuelType: 'CNG',
-			yearIntroduced: 2023
+			yearIntroduced: 2023,
+			description:
+				'Recent-model 60-foot articulated CNG buses. These bendies serve MTS Rapid lines and other routes needing maximum passenger throughput.'
 		}
 	},
 	{
@@ -152,7 +178,9 @@ export const fleet: FleetEntry[] = [
 			model: 'XN60',
 			lengthFt: 60,
 			fuelType: 'CNG',
-			yearIntroduced: 2024
+			yearIntroduced: 2024,
+			description:
+				'The newest articulated CNG buses in the fleet. A small 2024 follow-on order continuing the XN60 platform on high-ridership routes.'
 		}
 	},
 	{
@@ -163,7 +191,9 @@ export const fleet: FleetEntry[] = [
 			model: 'Low Floor CNG 40\'',
 			lengthFt: 40,
 			fuelType: 'CNG',
-			yearIntroduced: 2015
+			yearIntroduced: 2015,
+			description:
+				'Gillig 40-foot low-floor CNG buses from a 2015 batch. These run alongside the 200-series on various fixed-route services.'
 		}
 	},
 	{
@@ -174,7 +204,9 @@ export const fleet: FleetEntry[] = [
 			model: 'Low Floor CNG 40\'',
 			lengthFt: 40,
 			fuelType: 'CNG',
-			yearIntroduced: 2017
+			yearIntroduced: 2017,
+			description:
+				'Mid-generation Gillig CNG low-floor buses delivered in 2017. A sizable order that bolstered MTS\'s standard bus capacity.'
 		}
 	},
 	{
@@ -185,7 +217,9 @@ export const fleet: FleetEntry[] = [
 			model: 'Low Floor CNG 40\'',
 			lengthFt: 40,
 			fuelType: 'CNG',
-			yearIntroduced: 2022
+			yearIntroduced: 2022,
+			description:
+				'A 2022 batch of Gillig low-floor CNG 40-footers. Features the latest Gillig interior refresh with improved LED lighting and seating.'
 		}
 	},
 	{
@@ -196,7 +230,9 @@ export const fleet: FleetEntry[] = [
 			model: 'Low Floor CNG 40\'',
 			lengthFt: 40,
 			fuelType: 'CNG',
-			yearIntroduced: 2013
+			yearIntroduced: 2013,
+			description:
+				'Gillig low-floor CNG buses from 2013. Among the earlier Gillig deliveries that established the model as an MTS fleet staple.'
 		}
 	},
 	{
@@ -207,7 +243,9 @@ export const fleet: FleetEntry[] = [
 			model: 'Low Floor CNG 40\'',
 			lengthFt: 40,
 			fuelType: 'CNG',
-			yearIntroduced: 2014
+			yearIntroduced: 2014,
+			description:
+				'A large 2014 order of Gillig 40-foot CNG buses. One of the biggest single batches in the fleet, serving routes across the MTS network.'
 		}
 	},
 	{
@@ -218,7 +256,9 @@ export const fleet: FleetEntry[] = [
 			model: 'Low Floor CNG 40\'',
 			lengthFt: 40,
 			fuelType: 'CNG',
-			yearIntroduced: 2021
+			yearIntroduced: 2021,
+			description:
+				'Gillig low-floor CNG 40-footers from a 2021 delivery. Helped refresh the aging mid-2010s Gillig fleet with updated components.'
 		}
 	},
 	{
@@ -229,7 +269,9 @@ export const fleet: FleetEntry[] = [
 			model: 'Low Floor CNG 40\'',
 			lengthFt: 40,
 			fuelType: 'CNG',
-			yearIntroduced: 2018
+			yearIntroduced: 2018,
+			description:
+				'A small batch of 2018 Gillig CNG buses. These fill-in units supplemented larger orders to meet route coverage needs.'
 		}
 	},
 	{
@@ -240,7 +282,9 @@ export const fleet: FleetEntry[] = [
 			model: 'Low Floor CNG 40\'',
 			lengthFt: 40,
 			fuelType: 'CNG',
-			yearIntroduced: 2021
+			yearIntroduced: 2021,
+			description:
+				'A tiny 2021 batch of Gillig low-floor CNG buses. Likely a follow-on option exercised from a larger contract.'
 		}
 	},
 	{
@@ -251,7 +295,9 @@ export const fleet: FleetEntry[] = [
 			model: 'C40LFR',
 			lengthFt: 40,
 			fuelType: 'CNG',
-			yearIntroduced: 2011
+			yearIntroduced: 2011,
+			description:
+				'The oldest New Flyer buses still in service. These C40LFR low-floor CNG buses have been workhorses since 2011.'
 		}
 	},
 	{
@@ -262,7 +308,9 @@ export const fleet: FleetEntry[] = [
 			model: 'F-550/Aero Elite',
 			lengthFt: 25,
 			fuelType: 'Gasoline',
-			yearIntroduced: 2014
+			yearIntroduced: 2014,
+			description:
+				'Compact 25-foot cutaway shuttle bus on a Ford F-550 chassis. Used for lower-ridership community routes and demand-response service.'
 		}
 	},
 	{
@@ -273,7 +321,9 @@ export const fleet: FleetEntry[] = [
 			model: 'F-550/Aero Elite',
 			lengthFt: 25,
 			fuelType: 'LPG',
-			yearIntroduced: 2016
+			yearIntroduced: 2016,
+			description:
+				'LPG-powered cutaway shuttle on a Ford F-550 chassis. The propane fuel makes these cleaner-burning than their gasoline 3000-series siblings.'
 		}
 	},
 	{
@@ -284,7 +334,9 @@ export const fleet: FleetEntry[] = [
 			model: 'F550/Allstar XL',
 			lengthFt: 25,
 			fuelType: 'Gasoline',
-			yearIntroduced: 2019
+			yearIntroduced: 2019,
+			description:
+				'Starcraft-bodied cutaway on a Ford F-550 chassis. A newer shuttle variant used for paratransit and community connector routes.'
 		}
 	},
 	{
@@ -295,7 +347,9 @@ export const fleet: FleetEntry[] = [
 			model: 'XN60',
 			lengthFt: 60,
 			fuelType: 'CNG',
-			yearIntroduced: 2017
+			yearIntroduced: 2017,
+			description:
+				'60-foot articulated CNG buses assigned to high-frequency services. Part of a 2017 expansion of articulated capacity.'
 		}
 	},
 	{
@@ -306,7 +360,9 @@ export const fleet: FleetEntry[] = [
 			model: 'XN60',
 			lengthFt: 60,
 			fuelType: 'CNG',
-			yearIntroduced: 2017
+			yearIntroduced: 2017,
+			description:
+				'Articulated 60-foot New Flyer CNG buses from the same 2017 order as the 7400-series. Typically seen on Rapid and SuperLoop routes.'
 		}
 	},
 	{
@@ -317,7 +373,9 @@ export const fleet: FleetEntry[] = [
 			model: 'XE60',
 			lengthFt: 60,
 			fuelType: 'Electric',
-			yearIntroduced: 2023
+			yearIntroduced: 2023,
+			description:
+				'Battery-electric 60-foot articulated bus — the largest zero-emission vehicles in the MTS fleet. A major step toward full fleet electrification.'
 		}
 	},
 	{
@@ -328,7 +386,9 @@ export const fleet: FleetEntry[] = [
 			model: 'XE40',
 			lengthFt: 40,
 			fuelType: 'Electric',
-			yearIntroduced: 2025
+			yearIntroduced: 2025,
+			description:
+				'The newest and largest batch of battery-electric 40-foot buses. These Xcelsior CHARGE units represent MTS\'s accelerating shift to zero-emission transit.'
 		}
 	},
 	{
@@ -339,7 +399,9 @@ export const fleet: FleetEntry[] = [
 			model: 'Low Floor CNG 40\'',
 			lengthFt: 40,
 			fuelType: 'CNG',
-			yearIntroduced: 2015
+			yearIntroduced: 2015,
+			description:
+				'Gillig low-floor CNG 40-footers from 2015. These operate primarily out of MTS\'s East County division.'
 		}
 	},
 	{
@@ -350,7 +412,9 @@ export const fleet: FleetEntry[] = [
 			model: 'Low Floor CNG 40\'',
 			lengthFt: 40,
 			fuelType: 'CNG',
-			yearIntroduced: 2016
+			yearIntroduced: 2016,
+			description:
+				'A 2016 batch of Gillig CNG buses. One of the larger Gillig orders, these buses are distributed across multiple MTS operating divisions.'
 		}
 	},
 	{
@@ -361,7 +425,9 @@ export const fleet: FleetEntry[] = [
 			model: 'Low Floor CNG 40\'',
 			lengthFt: 40,
 			fuelType: 'CNG',
-			yearIntroduced: 2019
+			yearIntroduced: 2019,
+			description:
+				'A small 2019 follow-on order of Gillig low-floor CNG buses. Supplemented the existing Gillig fleet with updated components.'
 		}
 	},
 	{
@@ -372,7 +438,9 @@ export const fleet: FleetEntry[] = [
 			model: 'D4500CT CNG',
 			lengthFt: 40,
 			fuelType: 'CNG',
-			yearIntroduced: 2020
+			yearIntroduced: 2020,
+			description:
+				'Motor Coach Industries commuter coach running on CNG. A highway-style bus with high-back seating, used on longer express and commuter routes.'
 		}
 	}
 ];
