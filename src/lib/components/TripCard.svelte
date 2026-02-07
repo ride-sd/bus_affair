@@ -25,6 +25,9 @@
 		<div class="flex items-center justify-between">
 			<div class="flex items-center gap-3">
 				<span class="text-2xl font-bold tabular-nums">#{trip.busNumber}</span>
+				{#if trip.mtsLine}
+					<span class="text-base text-base-content/60 font-medium">· Line {trip.mtsLine}</span>
+				{/if}
 				<BusModelBadge model={trip.busModel} />
 			</div>
 			{#if ondelete}

@@ -8,8 +8,8 @@
 		tripStore.load();
 	});
 
-	async function handleSubmit(busNumber: number) {
-		await tripStore.addTrip(busNumber);
+	async function handleSubmit(busNumber: number, mtsLine?: string) {
+		await tripStore.addTrip(busNumber, mtsLine);
 	}
 </script>
 

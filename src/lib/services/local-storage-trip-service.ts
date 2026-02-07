@@ -23,12 +23,13 @@ export function createLocalStorageTripService(): TripService {
 			return loadTrips();
 		},
 
-		async addTrip(busNumber: number): Promise<Trip> {
+		async addTrip(busNumber: number, mtsLine?: string): Promise<Trip> {
 			const trip: Trip = {
 				id: crypto.randomUUID(),
 				busNumber,
 				timestamp: new Date().toISOString(),
-				busModel: lookupBusModel(busNumber)
+				busModel: lookupBusModel(busNumber),
+				...(mtsLine && { mtsLine })
 			};
 			const trips = loadTrips();
 			trips.unshift(trip);

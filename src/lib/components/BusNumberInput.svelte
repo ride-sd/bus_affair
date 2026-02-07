@@ -1,14 +1,16 @@
 <script lang="ts">
 	import { lookupBusModel } from '$lib/services/bus-lookup';
+	import { mtsLines } from '$lib/data/mts-lines';
 	import BusModelBadge from './BusModelBadge.svelte';
 
 	interface Props {
-		onsubmit: (busNumber: number) => void;
+		onsubmit: (busNumber: number, mtsLine?: string) => void;
 	}
 
 	let { onsubmit }: Props = $props();
 
 	let input = $state('');
+	let selectedLine = $state('');
 	let submitted = $state(false);
 
 	const busNumber = $derived(input.length >= 3 ? parseInt(input, 10) : null);
@@ -34,9 +36,10 @@
 
 	function submit() {
 		if (!canSubmit) return;
-		onsubmit(parseInt(input, 10));
+		onsubmit(parseInt(input, 10), selectedLine || undefined);
 		submitted = true;
 		input = '';
+		selectedLine = '';
 	}
 
 	const keys = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
@@ -56,6 +59,14 @@
 			{/if}
 		</div>
 	</div>
+
+	<!-- Line selector -->
+	<select class="select select-bordered w-full max-w-xs" bind:value={selectedLine}>
+		<option value="">Line (optional)</option>
+		{#each mtsLines as line}
+			<option value={line.route}>{line.route} - {line.name}</option>
+		{/each}
+	</select>
 
 	<!-- Keypad -->
 	<div class="grid w-full max-w-xs grid-cols-3 gap-2">

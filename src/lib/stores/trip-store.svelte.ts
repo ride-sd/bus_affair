@@ -23,8 +23,8 @@ export const tripStore = {
 		loading = false;
 	},
 
-	async addTrip(busNumber: number) {
-		const trip = await service.addTrip(busNumber);
+	async addTrip(busNumber: number, mtsLine?: string) {
+		const trip = await service.addTrip(busNumber, mtsLine);
 		trips = [trip, ...trips];
 		return trip;
 	},

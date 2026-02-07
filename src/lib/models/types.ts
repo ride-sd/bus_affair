@@ -14,6 +14,7 @@ export interface Trip {
 	busNumber: number;
 	timestamp: string;
 	busModel: BusModel | null;
+	mtsLine?: string;
 }
 
 export interface FleetEntry {
@@ -24,7 +25,7 @@ export interface FleetEntry {
 
 export interface TripService {
 	getTrips(): Promise<Trip[]>;
-	addTrip(busNumber: number): Promise<Trip>;
+	addTrip(busNumber: number, mtsLine?: string): Promise<Trip>;
 	deleteTrip(id: string): Promise<void>;
 	clearAllTrips(): Promise<void>;
 }
