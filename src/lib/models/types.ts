@@ -1,5 +1,7 @@
 export type FuelType = 'CNG' | 'Electric' | 'Diesel' | 'LPG' | 'Gasoline';
 
+export type TripType = 'seen' | 'boarded';
+
 export interface BusModel {
 	manufacturer: string;
 	model: string;
@@ -16,6 +18,7 @@ export interface Trip {
 	timestamp: string;
 	busModel: BusModel | null;
 	mtsLine?: string;
+	type?: TripType;
 }
 
 export interface FleetEntry {
@@ -26,7 +29,7 @@ export interface FleetEntry {
 
 export interface TripService {
 	getTrips(): Promise<Trip[]>;
-	addTrip(busNumber: number, mtsLine?: string): Promise<Trip>;
+	addTrip(busNumber: number, mtsLine?: string, type?: TripType): Promise<Trip>;
 	deleteTrip(id: string): Promise<void>;
 	clearAllTrips(): Promise<void>;
 }
