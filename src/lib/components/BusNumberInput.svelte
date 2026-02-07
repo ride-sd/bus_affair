@@ -1,16 +1,18 @@
 <script lang="ts">
+	import type { TripType } from '$lib/models/types';
 	import { lookupBusModel } from '$lib/services/bus-lookup';
 	import { mtsLines } from '$lib/data/mts-lines';
 	import BusModelBadge from './BusModelBadge.svelte';
 
 	interface Props {
-		onsubmit: (busNumber: number, mtsLine?: string) => void;
+		onsubmit: (busNumber: number, mtsLine?: string, type?: TripType) => void;
 	}
 
 	let { onsubmit }: Props = $props();
 
 	let input = $state('');
 	let selectedLine = $state('');
+	let tripType = $state<TripType>('boarded');
 	let submitted = $state(false);
 
 	const busNumber = $derived(input.length >= 3 ? parseInt(input, 10) : null);
@@ -36,10 +38,11 @@
 
 	function submit() {
 		if (!canSubmit) return;
-		onsubmit(parseInt(input, 10), selectedLine || undefined);
+		onsubmit(parseInt(input, 10), selectedLine || undefined, tripType);
 		submitted = true;
 		input = '';
 		selectedLine = '';
+		tripType = 'boarded';
 	}
 
 	const keys = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
@@ -86,13 +89,31 @@
 		</button>
 	</div>
 
+	<!-- Trip type toggle -->
+	<div class="join max-w-xs w-full">
+		<button
+			class="join-item btn btn-sm flex-1"
+			class:btn-active={tripType === 'boarded'}
+			onclick={() => (tripType = 'boarded')}
+		>
+			Boarded
+		</button>
+		<button
+			class="join-item btn btn-sm flex-1"
+			class:btn-active={tripType === 'seen'}
+			onclick={() => (tripType = 'seen')}
+		>
+			Seen
+		</button>
+	</div>
+
 	<!-- Submit -->
 	<button
 		class="btn btn-primary btn-lg btn-block max-w-xs text-lg"
 		disabled={!canSubmit}
 		onclick={submit}
 	>
-		Log Trip
+		{tripType === 'seen' ? 'Log Sighting' : 'Log Trip'}
 	</button>
 
 	{#if submitted}

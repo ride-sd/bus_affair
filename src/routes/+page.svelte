@@ -1,4 +1,5 @@
 <script lang="ts">
+	import type { TripType } from '$lib/models/types';
 	import { onMount } from 'svelte';
 	import BusNumberInput from '$lib/components/BusNumberInput.svelte';
 	import TripList from '$lib/components/TripList.svelte';
@@ -8,8 +9,8 @@
 		tripStore.load();
 	});
 
-	async function handleSubmit(busNumber: number, mtsLine?: string) {
-		await tripStore.addTrip(busNumber, mtsLine);
+	async function handleSubmit(busNumber: number, mtsLine?: string, type?: TripType) {
+		await tripStore.addTrip(busNumber, mtsLine, type);
 	}
 </script>
 
