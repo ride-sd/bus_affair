@@ -20,6 +20,7 @@
 		<span class="badge badge-primary">{model.manufacturer} {model.model}</span>
 		<span class="badge {fuelColor[model.fuelType] ?? 'badge-neutral'}">{model.fuelType}</span>
 		<span class="badge badge-ghost">{model.lengthFt}ft</span>
+		<span class="badge badge-ghost">{model.yearIntroduced}</span>
 	</div>
 {:else}
 	<span class="badge badge-neutral">Unknown bus</span>
