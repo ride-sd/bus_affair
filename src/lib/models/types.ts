@@ -1,4 +1,4 @@
-export type FuelType = 'CNG' | 'Electric' | 'Diesel' | 'LPG';
+export type FuelType = 'CNG' | 'Electric' | 'Diesel' | 'LPG' | 'Gasoline';
 
 export interface BusModel {
 	manufacturer: string;
