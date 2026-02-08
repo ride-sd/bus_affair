@@ -12,7 +12,7 @@
 
 	let input = $state('');
 	let selectedLine = $state('');
-	let tripType = $state<TripType>('boarded');
+	let tripType = $state<TripType>('seen');
 	let submitted = $state(false);
 
 	const busNumber = $derived(input.length >= 3 ? parseInt(input, 10) : null);
@@ -42,7 +42,7 @@
 		submitted = true;
 		input = '';
 		selectedLine = '';
-		tripType = 'boarded';
+		tripType = 'seen';
 	}
 
 	const keys = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
