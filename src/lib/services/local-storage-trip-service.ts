@@ -24,7 +24,7 @@ export function createLocalStorageTripService(): TripService {
 		},
 
 		async addTrip(busNumber: number, mtsLine?: string, type?: TripType, location?: GeoLocation): Promise<Trip> {
-			const tripType = type ?? 'boarded';
+			const tripType = type ?? 'seen';
 			const trip: Trip = {
 				id: crypto.randomUUID(),
 				busNumber,
