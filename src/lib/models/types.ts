@@ -3,6 +3,7 @@ export type FuelType = 'CNG' | 'Electric' | 'Diesel' | 'LPG' | 'Gasoline';
 export type TripType = 'seen' | 'boarded';
 
 export interface BusModel {
+	id?: string;
 	manufacturer: string;
 	model: string;
 	lengthFt: number;
