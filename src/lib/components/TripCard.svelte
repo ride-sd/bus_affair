@@ -20,7 +20,7 @@
 	}
 </script>
 
-<div class="card bg-base-200 shadow-sm">
+<div class="card shadow-sm {trip.type === 'boarded' ? 'bg-primary/10' : 'bg-base-200'}">
 	<div class="card-body p-4">
 		<div class="flex items-center justify-between">
 			<div class="flex items-center gap-3">
@@ -29,7 +29,14 @@
 					<span class="text-base text-base-content/60 font-medium">· Line {trip.mtsLine}</span>
 				{/if}
 				<BusModelBadge model={trip.busModel} />
-				{#if trip.type === 'seen'}
+			{#if trip.type === 'boarded'}
+					<span class="inline-flex items-center gap-1 text-sm text-primary">
+						<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
+							<path d="M4 16c0 .88.39 1.67 1 2.22V20c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h8v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1.78c.61-.55 1-1.34 1-2.22V6c0-3.5-3.58-4-8-4s-8 .5-8 4v10zm3.5 1c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm1.5-6H6V6h12v5z" />
+						</svg>
+						Boarded
+					</span>
+				{:else}
 					<span class="badge badge-ghost badge-sm gap-1">
 						<svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
 							<path d="M10 12a2 2 0 100-4 2 2 0 000 4z" />
