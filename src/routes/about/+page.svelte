@@ -7,6 +7,12 @@
 		tripStore.load();
 	});
 
+	function clearAll() {
+		if (confirm('Delete all trips? This cannot be undone.')) {
+			tripStore.clearAll();
+		}
+	}
+
 	function exportTrips() {
 		const trips = tripStore.trips.map((trip) => {
 			if (trip.busModel && !trip.busModel.id) {
@@ -58,11 +64,21 @@
 			<h2 class="card-title">Your data</h2>
 			<p class="text-base-content/70">
 				All trip data stays on your device using your browser's local storage. Nothing is sent
-				to a server. You can
-				<!-- svelte-ignore a11y_no_static_element_interactions -->
-				<!-- svelte-ignore a11y_click_events_have_key_events -->
-				<span class="link link-hover" onclick={exportTrips}>download your data</span> at any time.
+				to a server.
 			</p>
+			<!-- svelte-ignore a11y_no_static_element_interactions -->
+			<!-- svelte-ignore a11y_click_events_have_key_events -->
+			<span class="link link-hover mt-2 text-sm text-base-content/70" onclick={exportTrips}>Download your data</span>
+		</div>
+	</div>
+
+	<div class="card border border-error bg-error/10 shadow-sm">
+		<div class="card-body">
+			<h2 class="card-title text-error">Danger Zone</h2>
+			<p class="text-base-content/70">Once you delete your trips, there is no going back.</p>
+			<div class="card-actions mt-2">
+				<button class="btn btn-error btn-sm" onclick={clearAll}>Delete all trips</button>
+			</div>
 		</div>
 	</div>
 </div>
