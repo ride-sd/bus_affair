@@ -18,7 +18,7 @@
 {#if model}
 	<div class="flex flex-wrap gap-1.5">
 		<span class="badge badge-secondary">{model.manufacturer}</span>
-		<span class="badge badge-primary">{model.model}</span>
+		<span class="badge badge-primary h-auto whitespace-normal">{model.model}</span>
 		{#if model.fuelType === 'Electric'}
 			<span class="badge badge-success gap-1">
 				<svg xmlns="http://www.w3.org/2000/svg" class="h-3 w-3" viewBox="0 0 20 20" fill="currentColor">
