@@ -13,14 +13,7 @@
 </script>
 
 <div class="flex flex-col gap-4">
-	<div class="flex items-center justify-between">
-		<h1 class="text-2xl font-bold">Trip History</h1>
-		{#if tripStore.trips.length > 0}
-			<button class="btn btn-error btn-sm" onclick={() => tripStore.clearAll()}>
-				Clear All
-			</button>
-		{/if}
-	</div>
+	<h1 class="text-2xl font-bold">Trip History</h1>
 
 	{#if tripStore.loading}
 		<div class="flex justify-center py-8">
