@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
+	import type { TripType } from '$lib/models/types';
 	import TripList from '$lib/components/TripList.svelte';
 	import { tripStore } from '$lib/stores/trip-store.svelte';
 
@@ -9,6 +10,10 @@
 
 	async function handleDelete(id: string) {
 		await tripStore.deleteTrip(id);
+	}
+
+	async function handleEdit(id: string, updates: { busNumber?: number; mtsLine?: string; type?: TripType }) {
+		await tripStore.updateTrip(id, updates);
 	}
 </script>
 
@@ -23,6 +28,7 @@
 		<TripList
 			trips={tripStore.trips}
 			ondelete={handleDelete}
+			onedit={handleEdit}
 			emptyMessage="No trips logged yet. Go log your first trip!"
 		/>
 	{/if}
