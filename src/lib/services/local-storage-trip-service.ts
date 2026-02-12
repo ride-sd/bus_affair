@@ -40,6 +40,30 @@ export function createLocalStorageTripService(): TripService {
 			return trip;
 		},
 
+		async updateTrip(
+			id: string,
+			updates: { busNumber?: number; mtsLine?: string; type?: TripType }
+		): Promise<Trip> {
+			const trips = loadTrips();
+			const index = trips.findIndex((t) => t.id === id);
+			if (index === -1) throw new Error(`Trip not found: ${id}`);
+
+			const trip = trips[index];
+			if (updates.busNumber !== undefined) {
+				trip.busNumber = updates.busNumber;
+				trip.busModel = lookupBusModel(updates.busNumber);
+			}
+			if (updates.mtsLine !== undefined) {
+				trip.mtsLine = updates.mtsLine || undefined;
+			}
+			if (updates.type !== undefined) {
+				trip.type = updates.type;
+			}
+			trips[index] = trip;
+			saveTrips(trips);
+			return trip;
+		},
+
 		async deleteTrip(id: string): Promise<void> {
 			const trips = loadTrips().filter((t) => t.id !== id);
 			saveTrips(trips);

@@ -37,6 +37,7 @@ export interface FleetEntry {
 export interface TripService {
 	getTrips(): Promise<Trip[]>;
 	addTrip(busNumber: number, mtsLine?: string, type?: TripType, location?: GeoLocation): Promise<Trip>;
+	updateTrip(id: string, updates: { busNumber?: number; mtsLine?: string; type?: TripType }): Promise<Trip>;
 	deleteTrip(id: string): Promise<void>;
 	clearAllTrips(): Promise<void>;
 }

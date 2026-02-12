@@ -29,6 +29,12 @@ export const tripStore = {
 		return trip;
 	},
 
+	async updateTrip(id: string, updates: { busNumber?: number; mtsLine?: string; type?: TripType }) {
+		const updated = await service.updateTrip(id, updates);
+		trips = trips.map((t) => (t.id === id ? updated : t));
+		return updated;
+	},
+
 	async deleteTrip(id: string) {
 		await service.deleteTrip(id);
 		trips = trips.filter((t) => t.id !== id);
