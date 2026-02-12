@@ -1,9 +1,26 @@
 <script lang="ts">
+	import { onMount } from 'svelte';
 	import { page } from '$app/state';
+	import type { TripType } from '$lib/models/types';
 	import { lookupFleetEntry } from '$lib/services/bus-lookup';
+	import { tripStore } from '$lib/stores/trip-store.svelte';
+	import TripList from '$lib/components/TripList.svelte';
 
 	const busNumber = $derived(Number(page.params.number));
 	const entry = $derived(lookupFleetEntry(busNumber));
+	const busTrips = $derived(tripStore.trips.filter((t) => t.busNumber === busNumber));
+
+	onMount(() => {
+		tripStore.load();
+	});
+
+	async function handleDelete(id: string) {
+		await tripStore.deleteTrip(id);
+	}
+
+	async function handleEdit(id: string, updates: { busNumber?: number; mtsLine?: string; type?: TripType }) {
+		await tripStore.updateTrip(id, updates);
+	}
 </script>
 
 {#if entry}
@@ -47,6 +64,20 @@
 				</div>
 			</div>
 		</div>
+
+		<h2 class="text-xl font-bold">Your Trips</h2>
+		{#if tripStore.loading}
+			<div class="flex justify-center py-4">
+				<span class="loading loading-spinner loading-md"></span>
+			</div>
+		{:else}
+			<TripList
+				trips={busTrips}
+				ondelete={handleDelete}
+				onedit={handleEdit}
+				emptyMessage="No trips logged for this bus yet."
+			/>
+		{/if}
 	</div>
 {:else}
 	<div class="flex flex-col items-center gap-4 py-12">
