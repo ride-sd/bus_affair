@@ -42,7 +42,7 @@ export const fleet: FleetEntry[] = [
 	},
 	{
 		rangeStart: 801,
-		rangeEnd: 826,
+		rangeEnd: 827,
 		model: {
 			manufacturer: 'Gillig',
 			model: 'Low Floor CNG 40\'',
