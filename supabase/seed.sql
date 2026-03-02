@@ -175,3 +175,69 @@ insert into mts_lines (route, name) values
   ('968', '8th Street Transit Center - Plaza Bonita'),
   ('985', 'UC San Diego - N. Torrey Pines'),
   ('992', 'Downtown - Airport - Downtown');
+
+-- ============================================================================
+-- SEED DATA: admin user
+-- ============================================================================
+-- Nickname: leifio
+-- Password: chang3m3!
+-- Change this password immediately in production.
+
+insert into auth.users (
+  id,
+  instance_id,
+  email,
+  encrypted_password,
+  email_confirmed_at,
+  raw_user_meta_data,
+  raw_app_meta_data,
+  role,
+  aud,
+  confirmation_token,
+  recovery_token,
+  email_change_token_new,
+  email_change,
+  created_at,
+  updated_at
+) values (
+  '00000000-0000-0000-0000-000000000001',
+  '00000000-0000-0000-0000-000000000000',
+  'leifio@busaffair.local',
+  crypt('chang3m3!', gen_salt('bf')),
+  now(),
+  jsonb_build_object('display_name', 'leifio', 'nickname', 'leifio'),
+  jsonb_build_object('provider', 'email', 'providers', array['email']),
+  'authenticated',
+  'authenticated',
+  '',
+  '',
+  '',
+  '',
+  now(),
+  now()
+);
+
+insert into auth.identities (
+  id,
+  user_id,
+  provider_id,
+  identity_data,
+  provider,
+  last_sign_in_at,
+  created_at,
+  updated_at
+) values (
+  '00000000-0000-0000-0000-000000000001',
+  '00000000-0000-0000-0000-000000000001',
+  '00000000-0000-0000-0000-000000000001',
+  jsonb_build_object('sub', '00000000-0000-0000-0000-000000000001', 'email', 'leifio@busaffair.local'),
+  'email',
+  now(),
+  now(),
+  now()
+);
+
+-- The trigger creates the profile; update it to be admin + approved
+update profiles
+set approved = true, is_admin = true
+where id = '00000000-0000-0000-0000-000000000001';
