@@ -10,7 +10,8 @@ create type trip_type as enum ('seen', 'boarded');
 -- ============================================================================
 
 create table bus_models (
-  id text primary key,
+  id uuid primary key default gen_random_uuid(),
+  slug text unique not null,
   manufacturer text not null,
   model text not null,
   length_ft integer not null,
@@ -24,16 +25,20 @@ create table fleet_entries (
   id uuid primary key default gen_random_uuid(),
   range_start integer not null,
   range_end integer not null,
-  bus_model_id text not null references bus_models(id),
+  bus_model_id uuid not null references bus_models(id),
   constraint fleet_entries_range_check check (range_start <= range_end),
   constraint fleet_entries_range_unique unique (range_start, range_end)
 );
 
 create index fleet_entries_range_idx on fleet_entries (range_start, range_end);
 
-create table mts_lines (
-  route text primary key,
-  name text not null
+create table bus_routes (
+  id uuid primary key default gen_random_uuid(),
+  slug text unique not null,
+  agency text not null default 'MTS',
+  route text not null,
+  name text not null,
+  unique(agency, route)
 );
 
 create table profiles (
@@ -46,8 +51,8 @@ create table trips (
   id uuid primary key default gen_random_uuid(),
   user_id uuid not null references profiles(id) on delete cascade,
   bus_number integer not null,
-  bus_model_id text references bus_models(id),
-  mts_line text references mts_lines(route),
+  bus_model_id uuid references bus_models(id),
+  route_id uuid references bus_routes(id),
   type trip_type not null default 'seen',
   latitude double precision,
   longitude double precision,
@@ -66,7 +71,7 @@ alter table profiles enable row level security;
 alter table trips enable row level security;
 alter table bus_models enable row level security;
 alter table fleet_entries enable row level security;
-alter table mts_lines enable row level security;
+alter table bus_routes enable row level security;
 
 create policy "Users can read own profile"
   on profiles for select using (auth.uid() = id);
@@ -92,8 +97,8 @@ create policy "Authenticated users can read bus_models"
 create policy "Authenticated users can read fleet_entries"
   on fleet_entries for select using (auth.role() = 'authenticated');
 
-create policy "Authenticated users can read mts_lines"
-  on mts_lines for select using (auth.role() = 'authenticated');
+create policy "Authenticated users can read bus_routes"
+  on bus_routes for select using (auth.role() = 'authenticated');
 
 -- ============================================================================
 -- AUTO-CREATE PROFILE ON SIGNUP
@@ -120,7 +125,7 @@ create trigger on_auth_user_created
 -- ============================================================================
 
 create or replace function lookup_bus_model(bus_number integer)
-returns text
+returns uuid
 language sql
 stable
 as $$

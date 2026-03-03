@@ -1,24 +1,24 @@
 <script lang="ts">
 	import type { Trip, TripType } from '$lib/models/types';
-	import { mtsLines } from '$lib/data/mts-lines';
+	import { busRoutes } from '$lib/data/bus-routes';
 	import BusModelBadge from './BusModelBadge.svelte';
 
 	interface Props {
 		trip: Trip;
 		ondelete?: (id: string) => void;
-		onedit?: (id: string, updates: { busNumber?: number; mtsLine?: string; type?: TripType }) => void;
+		onedit?: (id: string, updates: { busNumber?: number; route?: string; type?: TripType }) => void;
 	}
 
 	let { trip, ondelete, onedit }: Props = $props();
 
 	let editing = $state(false);
 	let editBusNumber = $state(0);
-	let editMtsLine = $state('');
+	let editRoute = $state('');
 	let editType = $state<TripType>('seen');
 
 	function startEdit() {
 		editBusNumber = trip.busNumber;
-		editMtsLine = trip.mtsLine ?? '';
+		editRoute = trip.route ?? '';
 		editType = trip.type ?? 'seen';
 		editing = true;
 	}
@@ -31,7 +31,7 @@
 		if (!editBusNumber || editBusNumber < 1) return;
 		onedit?.(trip.id, {
 			busNumber: editBusNumber,
-			mtsLine: editMtsLine,
+			route: editRoute,
 			type: editType
 		});
 		editing = false;
@@ -64,9 +64,9 @@
 					</label>
 					<label class="form-control w-48">
 						<span class="label-text text-xs">Line</span>
-						<select class="select select-bordered select-sm w-full" bind:value={editMtsLine}>
+						<select class="select select-bordered select-sm w-full" bind:value={editRoute}>
 							<option value="">None</option>
-							{#each mtsLines as line}
+							{#each busRoutes as line}
 								<option value={line.route}>{line.route} - {line.name}</option>
 							{/each}
 						</select>
@@ -95,8 +95,8 @@
 			<div class="flex items-center justify-between">
 				<div class="flex items-center gap-3">
 					<a href="/bus/{trip.busNumber}" class="text-2xl font-bold tabular-nums hover:underline">#{trip.busNumber}</a>
-					{#if trip.mtsLine}
-						<span class="text-base text-base-content/60 font-medium">· Line {trip.mtsLine}</span>
+					{#if trip.route}
+						<span class="text-base text-base-content/60 font-medium">· Line {trip.route}</span>
 					{/if}
 					<BusModelBadge model={trip.busModel} />
 				{#if trip.type === 'boarded'}

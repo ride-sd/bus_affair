@@ -23,14 +23,14 @@ export function createLocalStorageTripService(): TripService {
 			return loadTrips();
 		},
 
-		async addTrip(busNumber: number, mtsLine?: string, type?: TripType, location?: GeoLocation): Promise<Trip> {
+		async addTrip(busNumber: number, route?: string, type?: TripType, location?: GeoLocation): Promise<Trip> {
 			const tripType = type ?? 'seen';
 			const trip: Trip = {
 				id: crypto.randomUUID(),
 				busNumber,
 				timestamp: new Date().toISOString(),
 				busModel: lookupBusModel(busNumber),
-				...(mtsLine && { mtsLine }),
+				...(route && { route, agency: 'MTS' }),
 				type: tripType,
 				...(location && { location })
 			};
@@ -42,7 +42,7 @@ export function createLocalStorageTripService(): TripService {
 
 		async updateTrip(
 			id: string,
-			updates: { busNumber?: number; mtsLine?: string; type?: TripType }
+			updates: { busNumber?: number; route?: string; type?: TripType }
 		): Promise<Trip> {
 			const trips = loadTrips();
 			const index = trips.findIndex((t) => t.id === id);
@@ -53,8 +53,9 @@ export function createLocalStorageTripService(): TripService {
 				trip.busNumber = updates.busNumber;
 				trip.busModel = lookupBusModel(updates.busNumber);
 			}
-			if (updates.mtsLine !== undefined) {
-				trip.mtsLine = updates.mtsLine || undefined;
+			if (updates.route !== undefined) {
+				trip.route = updates.route || undefined;
+				trip.agency = updates.route ? 'MTS' : undefined;
 			}
 			if (updates.type !== undefined) {
 				trip.type = updates.type;

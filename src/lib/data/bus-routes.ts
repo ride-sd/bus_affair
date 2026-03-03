@@ -1,9 +1,9 @@
-export interface MtsLine {
+export interface BusRoute {
 	route: string;
 	name: string;
 }
 
-export const mtsLines: MtsLine[] = [
+export const busRoutes: BusRoute[] = [
 	{ route: '1', name: 'Fashion Valley - La Mesa' },
 	{ route: '2', name: 'Downtown - North Park' },
 	{ route: '3', name: 'UCSD Med. Ctr. / Hillcrest - Euclid Trolley' },

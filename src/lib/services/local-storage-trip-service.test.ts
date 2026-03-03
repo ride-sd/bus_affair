@@ -52,14 +52,16 @@ describe('addTrip', () => {
 		expect(trip.busModel).toBeNull();
 	});
 
-	it('stores mtsLine when provided', async () => {
+	it('stores route when provided', async () => {
 		const trip = await service.addTrip(350, '215');
-		expect(trip.mtsLine).toBe('215');
+		expect(trip.route).toBe('215');
+		expect(trip.agency).toBe('MTS');
 	});
 
-	it('omits mtsLine when not provided', async () => {
+	it('omits route when not provided', async () => {
 		const trip = await service.addTrip(350);
-		expect(trip.mtsLine).toBeUndefined();
+		expect(trip.route).toBeUndefined();
+		expect(trip.agency).toBeUndefined();
 	});
 
 	it('stores location when provided', async () => {
@@ -94,16 +96,18 @@ describe('updateTrip', () => {
 		expect(updated.busModel!.manufacturer).toBe('Gillig');
 	});
 
-	it('updates mtsLine', async () => {
+	it('updates route', async () => {
 		const trip = await service.addTrip(350, '215');
-		const updated = await service.updateTrip(trip.id, { mtsLine: '7' });
-		expect(updated.mtsLine).toBe('7');
+		const updated = await service.updateTrip(trip.id, { route: '7' });
+		expect(updated.route).toBe('7');
+		expect(updated.agency).toBe('MTS');
 	});
 
-	it('clears mtsLine when set to empty string', async () => {
+	it('clears route when set to empty string', async () => {
 		const trip = await service.addTrip(350, '215');
-		const updated = await service.updateTrip(trip.id, { mtsLine: '' });
-		expect(updated.mtsLine).toBeUndefined();
+		const updated = await service.updateTrip(trip.id, { route: '' });
+		expect(updated.route).toBeUndefined();
+		expect(updated.agency).toBeUndefined();
 	});
 
 	it('updates trip type', async () => {
@@ -133,7 +137,8 @@ describe('updateTrip', () => {
 		});
 		const updated = await service.updateTrip(trip.id, { type: 'seen' });
 		expect(updated.busNumber).toBe(350);
-		expect(updated.mtsLine).toBe('215');
+		expect(updated.route).toBe('215');
+		expect(updated.agency).toBe('MTS');
 		expect(updated.location).toEqual({ latitude: 32.7, longitude: -117.1 });
 		expect(updated.type).toBe('seen');
 	});

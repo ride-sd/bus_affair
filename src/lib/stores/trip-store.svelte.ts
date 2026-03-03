@@ -1,10 +1,14 @@
-import type { GeoLocation, Trip, TripType } from '$lib/models/types';
+import type { GeoLocation, Trip, TripService, TripType } from '$lib/models/types';
 import { createTripService } from '$lib/services/trip-service';
 
-const service = createTripService();
-
+let service: TripService | null = null;
 let trips = $state<Trip[]>([]);
 let loading = $state(true);
+
+function requireService(): TripService {
+	if (!service) throw new Error('tripStore not initialized — call init(userId) first');
+	return service;
+}
 
 export const tripStore = {
 	get trips() {
@@ -17,31 +21,38 @@ export const tripStore = {
 		return loading;
 	},
 
-	async load() {
+	async init(userId: string) {
+		service = createTripService(userId);
 		loading = true;
 		trips = await service.getTrips();
 		loading = false;
 	},
 
-	async addTrip(busNumber: number, mtsLine?: string, type?: TripType, location?: GeoLocation) {
-		const trip = await service.addTrip(busNumber, mtsLine, type, location);
+	async load() {
+		loading = true;
+		trips = await requireService().getTrips();
+		loading = false;
+	},
+
+	async addTrip(busNumber: number, route?: string, type?: TripType, location?: GeoLocation) {
+		const trip = await requireService().addTrip(busNumber, route, type, location);
 		trips = [trip, ...trips];
 		return trip;
 	},
 
-	async updateTrip(id: string, updates: { busNumber?: number; mtsLine?: string; type?: TripType }) {
-		const updated = await service.updateTrip(id, updates);
+	async updateTrip(id: string, updates: { busNumber?: number; route?: string; type?: TripType }) {
+		const updated = await requireService().updateTrip(id, updates);
 		trips = trips.map((t) => (t.id === id ? updated : t));
 		return updated;
 	},
 
 	async deleteTrip(id: string) {
-		await service.deleteTrip(id);
+		await requireService().deleteTrip(id);
 		trips = trips.filter((t) => t.id !== id);
 	},
 
 	async clearAll() {
-		await service.clearAllTrips();
+		await requireService().clearAllTrips();
 		trips = [];
 	}
 };

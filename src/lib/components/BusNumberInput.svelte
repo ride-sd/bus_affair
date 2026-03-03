@@ -1,11 +1,11 @@
 <script lang="ts">
 	import type { TripType } from '$lib/models/types';
 	import { lookupBusModel } from '$lib/services/bus-lookup';
-	import { mtsLines } from '$lib/data/mts-lines';
+	import { busRoutes } from '$lib/data/bus-routes';
 	import BusModelBadge from './BusModelBadge.svelte';
 
 	interface Props {
-		onsubmit: (busNumber: number, mtsLine?: string, type?: TripType) => void;
+		onsubmit: (busNumber: number, route?: string, type?: TripType) => void;
 	}
 
 	let { onsubmit }: Props = $props();
@@ -66,7 +66,7 @@
 	<!-- Line selector -->
 	<select class="select select-bordered w-full max-w-xs" bind:value={selectedLine}>
 		<option value="">Line (optional)</option>
-		{#each mtsLines as line}
+		{#each busRoutes as line}
 			<option value={line.route}>{line.route} - {line.name}</option>
 		{/each}
 	</select>

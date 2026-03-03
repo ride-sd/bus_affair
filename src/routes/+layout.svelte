@@ -5,10 +5,12 @@
 	import { onMount } from 'svelte';
 	import AppShell from '$lib/components/AppShell.svelte';
 	import { authStore } from '$lib/stores/auth-store.svelte';
+	import { tripStore } from '$lib/stores/trip-store.svelte';
 
 	let { children } = $props();
 
 	const isAuthPage = $derived(page.url.pathname.startsWith('/auth/'));
+	let tripStoreInitialized = false;
 
 	onMount(() => {
 		authStore.init();
@@ -28,6 +30,9 @@
 			goto('/auth/login');
 		} else if (authStore.user && authStore.profile && !authStore.profile.approved && path !== '/auth/pending') {
 			goto('/auth/pending');
+		} else if (authStore.user && authStore.profile?.approved && !tripStoreInitialized) {
+			tripStoreInitialized = true;
+			tripStore.init(authStore.user.id);
 		}
 	});
 </script>

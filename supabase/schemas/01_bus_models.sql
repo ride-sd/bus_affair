@@ -1,5 +1,6 @@
 create table bus_models (
-  id text primary key,
+  id uuid primary key default gen_random_uuid(),
+  slug text unique not null,
   manufacturer text not null,
   model text not null,
   length_ft integer not null,

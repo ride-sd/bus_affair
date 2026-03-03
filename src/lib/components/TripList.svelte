@@ -5,7 +5,7 @@
 	interface Props {
 		trips: Trip[];
 		ondelete?: (id: string) => void;
-		onedit?: (id: string, updates: { busNumber?: number; mtsLine?: string; type?: TripType }) => void;
+		onedit?: (id: string, updates: { busNumber?: number; route?: string; type?: TripType }) => void;
 		emptyMessage?: string;
 	}
 

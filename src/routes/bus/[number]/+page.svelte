@@ -18,7 +18,7 @@
 		await tripStore.deleteTrip(id);
 	}
 
-	async function handleEdit(id: string, updates: { busNumber?: number; mtsLine?: string; type?: TripType }) {
+	async function handleEdit(id: string, updates: { busNumber?: number; route?: string; type?: TripType }) {
 		await tripStore.updateTrip(id, updates);
 	}
 </script>

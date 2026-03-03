@@ -11,9 +11,9 @@
 		requestLocationPermission();
 	});
 
-	async function handleSubmit(busNumber: number, mtsLine?: string, type?: TripType) {
+	async function handleSubmit(busNumber: number, route?: string, type?: TripType) {
 		const location = (await getCurrentLocation()) ?? undefined;
-		await tripStore.addTrip(busNumber, mtsLine, type, location);
+		await tripStore.addTrip(busNumber, route, type, location);
 	}
 </script>
 
