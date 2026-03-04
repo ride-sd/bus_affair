@@ -1,5 +1,10 @@
-import { fleet } from '$lib/data/bus-fleet';
 import type { BusModel, FleetEntry } from '$lib/models/types';
+
+let fleet: FleetEntry[] = [];
+
+export function setFleetData(data: FleetEntry[]): void {
+	fleet = data;
+}
 
 export function generateModelId(model: BusModel): string {
 	return `${model.yearIntroduced}-${model.manufacturer}-${model.model}`

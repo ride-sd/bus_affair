@@ -1,12 +1,75 @@
-import { describe, it, expect } from 'vitest';
-import { generateModelId, lookupBusModel, lookupFleetEntry } from './bus-lookup';
-import type { BusModel } from '$lib/models/types';
+import { describe, it, expect, beforeEach } from 'vitest';
+import { generateModelId, lookupBusModel, lookupFleetEntry, setFleetData } from './bus-lookup';
+import type { BusModel, FleetEntry } from '$lib/models/types';
+
+const testFleet: FleetEntry[] = [
+	{
+		rangeStart: 201,
+		rangeEnd: 223,
+		model: {
+			manufacturer: 'Gillig',
+			model: "Low Floor CNG 40'",
+			lengthFt: 40,
+			fuelType: 'CNG',
+			yearIntroduced: 2015,
+			description: 'Standard 40-foot low-floor CNG bus by Gillig.'
+		}
+	},
+	{
+		rangeStart: 301,
+		rangeEnd: 390,
+		model: {
+			manufacturer: 'New Flyer',
+			model: 'XN40',
+			lengthFt: 40,
+			fuelType: 'CNG',
+			yearIntroduced: 2025
+		}
+	},
+	{
+		rangeStart: 1501,
+		rangeEnd: 1506,
+		model: {
+			manufacturer: 'New Flyer',
+			model: 'XE40',
+			lengthFt: 40,
+			fuelType: 'Electric',
+			yearIntroduced: 2019
+		}
+	},
+	{
+		rangeStart: 1801,
+		rangeEnd: 1826,
+		model: {
+			manufacturer: 'New Flyer',
+			model: 'XN60',
+			lengthFt: 60,
+			fuelType: 'CNG',
+			yearIntroduced: 2021
+		}
+	},
+	{
+		rangeStart: 3101,
+		rangeEnd: 3131,
+		model: {
+			manufacturer: 'Ford/ElDorado',
+			model: 'F-550/Aero Elite',
+			lengthFt: 25,
+			fuelType: 'LPG',
+			yearIntroduced: 2016
+		}
+	}
+];
+
+beforeEach(() => {
+	setFleetData(testFleet);
+});
 
 describe('generateModelId', () => {
 	it('produces a slug from model fields', () => {
 		const model: BusModel = {
 			manufacturer: 'Gillig',
-			model: 'Low Floor CNG 40\'',
+			model: "Low Floor CNG 40'",
 			lengthFt: 40,
 			fuelType: 'CNG',
 			yearIntroduced: 2015

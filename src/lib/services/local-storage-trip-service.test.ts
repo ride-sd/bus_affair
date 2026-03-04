@@ -1,5 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { createLocalStorageTripService } from './local-storage-trip-service';
+import { setFleetData } from './bus-lookup';
 import type { TripService } from '$lib/models/types';
 
 // @vitest-environment jsdom
@@ -8,6 +9,30 @@ let service: TripService;
 
 beforeEach(() => {
 	localStorage.clear();
+	setFleetData([
+		{
+			rangeStart: 201,
+			rangeEnd: 223,
+			model: {
+				manufacturer: 'Gillig',
+				model: "Low Floor CNG 40'",
+				lengthFt: 40,
+				fuelType: 'CNG',
+				yearIntroduced: 2015
+			}
+		},
+		{
+			rangeStart: 301,
+			rangeEnd: 390,
+			model: {
+				manufacturer: 'New Flyer',
+				model: 'XN40',
+				lengthFt: 40,
+				fuelType: 'CNG',
+				yearIntroduced: 2025
+			}
+		}
+	]);
 	service = createLocalStorageTripService();
 });
 
