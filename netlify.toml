@@ -2,6 +2,11 @@
   command = "npm run build"
   publish = "build"
 
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
 [context.production.environment]
   PUBLIC_SUPABASE_URL = "https://bmwctnuvuoiseucszgiz.supabase.co"
   PUBLIC_SUPABASE_PUBLISHABLE_KEY = "sb_publishable_yqJmNVoXxLfdqt6PzO0wAw_pYM4rfxt"
