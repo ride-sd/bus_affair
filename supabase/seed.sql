@@ -15,7 +15,7 @@ BEGIN
     '00000000-0000-0000-0000-000000000000',
     'authenticated',
     'authenticated',
-    'admin@busaffair.local',
+    'admin@stub.busaffair.com',
     crypt('password', gen_salt('bf')),
     now(), now(), now(),
     '{"nickname": "admin", "display_name": "admin"}',

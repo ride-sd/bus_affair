@@ -60,7 +60,7 @@ export const authStore = {
 	},
 
 	async signUp(nickname: string, password: string) {
-		const email = `${nickname}@busaffair.local`;
+		const email = `${nickname}@stub.busaffair.com`;
 		const { data, error } = await supabase.auth.signUp({
 			email,
 			password,
@@ -78,7 +78,7 @@ export const authStore = {
 	},
 
 	async signIn(nickname: string, password: string) {
-		const email = `${nickname}@busaffair.local`;
+		const email = `${nickname}@stub.busaffair.com`;
 		const { data, error } = await supabase.auth.signInWithPassword({
 			email,
 			password
