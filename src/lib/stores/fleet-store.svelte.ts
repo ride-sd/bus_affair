@@ -8,7 +8,7 @@ let loading = $state(true);
 async function fetchFleetEntries(): Promise<void> {
 	const { data, error } = await supabase
 		.from('fleet_entries')
-		.select('range_start, range_end, bus_models(slug, manufacturer, model, length_ft, fuel_type, year_introduced, description)')
+		.select('agency, range_start, range_end, bus_models(slug, manufacturer, model, length_ft, fuel_type, year_introduced, description)')
 		.order('range_start');
 
 	if (error) {
@@ -19,6 +19,7 @@ async function fetchFleetEntries(): Promise<void> {
 	const entries: FleetEntry[] = (data ?? []).map((row) => {
 		const m = row.bus_models as unknown as Record<string, unknown>;
 		return {
+			agency: row.agency as string,
 			rangeStart: row.range_start as number,
 			rangeEnd: row.range_end as number,
 			model: {

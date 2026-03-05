@@ -1,22 +1,22 @@
 <script lang="ts">
-	import type { TripType } from '$lib/models/types';
+	import type { EncounterType } from '$lib/models/types';
 	import { lookupBusModel } from '$lib/services/bus-lookup.svelte';
 	import { mtsLines } from '$lib/data/mts-lines.svelte';
 	import BusModelBadge from './BusModelBadge.svelte';
 
 	interface Props {
-		onsubmit: (busNumber: number, mtsLine?: string, type?: TripType) => void;
+		onsubmit: (busNumber: number, route?: string, type?: EncounterType) => void;
 	}
 
 	let { onsubmit }: Props = $props();
 
 	let input = $state('');
 	let selectedLine = $state('');
-	let tripType = $state<TripType>('seen');
+	let encounterType = $state<EncounterType>('seen');
 	let submitted = $state(false);
 
 	const busNumber = $derived(input.length >= 3 ? parseInt(input, 10) : null);
-	const preview = $derived(busNumber !== null ? lookupBusModel(busNumber) : undefined);
+	const preview = $derived(busNumber !== null ? lookupBusModel(busNumber, 'MTS') : undefined);
 	const canSubmit = $derived(input.length >= 3 && input.length <= 4);
 
 	function press(digit: string) {
@@ -38,11 +38,11 @@
 
 	function submit() {
 		if (!canSubmit) return;
-		onsubmit(parseInt(input, 10), selectedLine || undefined, tripType);
+		onsubmit(parseInt(input, 10), selectedLine || undefined, encounterType);
 		submitted = true;
 		input = '';
 		selectedLine = '';
-		tripType = 'seen';
+		encounterType = 'seen';
 	}
 
 	const keys = ['1', '2', '3', '4', '5', '6', '7', '8', '9'];
@@ -89,19 +89,19 @@
 		</button>
 	</div>
 
-	<!-- Trip type toggle -->
+	<!-- Encounter type toggle -->
 	<div class="join max-w-xs w-full">
 		<button
 			class="join-item btn btn-sm flex-1"
-			class:btn-active={tripType === 'boarded'}
-			onclick={() => (tripType = 'boarded')}
+			class:btn-active={encounterType === 'boarded'}
+			onclick={() => (encounterType = 'boarded')}
 		>
 			Boarded
 		</button>
 		<button
 			class="join-item btn btn-sm flex-1"
-			class:btn-active={tripType === 'seen'}
-			onclick={() => (tripType = 'seen')}
+			class:btn-active={encounterType === 'seen'}
+			onclick={() => (encounterType = 'seen')}
 		>
 			Seen
 		</button>
@@ -113,10 +113,10 @@
 		disabled={!canSubmit}
 		onclick={submit}
 	>
-		{tripType === 'seen' ? 'Log Sighting' : 'Log Trip'}
+		{encounterType === 'seen' ? 'Log Sighting' : 'Log Boarding'}
 	</button>
 
 	{#if submitted}
-		<div class="text-success text-sm animate-pulse">Trip logged!</div>
+		<div class="text-success text-sm animate-pulse">Logged!</div>
 	{/if}
 </div>

@@ -1,25 +1,25 @@
 <script lang="ts">
-	import type { Trip, TripType } from '$lib/models/types';
+	import type { Encounter, EncounterType } from '$lib/models/types';
 	import { mtsLines } from '$lib/data/mts-lines.svelte';
 	import BusModelBadge from './BusModelBadge.svelte';
 
 	interface Props {
-		trip: Trip;
+		encounter: Encounter;
 		ondelete?: (id: string) => void;
-		onedit?: (id: string, updates: { busNumber?: number; mtsLine?: string; type?: TripType }) => void;
+		onedit?: (id: string, updates: { busNumber?: number; route?: string; type?: EncounterType }) => void;
 	}
 
-	let { trip, ondelete, onedit }: Props = $props();
+	let { encounter, ondelete, onedit }: Props = $props();
 
 	let editing = $state(false);
 	let editBusNumber = $state(0);
-	let editMtsLine = $state('');
-	let editType = $state<TripType>('seen');
+	let editRoute = $state('');
+	let editType = $state<EncounterType>('seen');
 
 	function startEdit() {
-		editBusNumber = trip.busNumber;
-		editMtsLine = trip.mtsLine ?? '';
-		editType = trip.type ?? 'seen';
+		editBusNumber = encounter.busNumber;
+		editRoute = encounter.route ?? '';
+		editType = encounter.type ?? 'seen';
 		editing = true;
 	}
 
@@ -29,9 +29,9 @@
 
 	function saveEdit() {
 		if (!editBusNumber || editBusNumber < 1) return;
-		onedit?.(trip.id, {
+		onedit?.(encounter.id, {
 			busNumber: editBusNumber,
-			mtsLine: editMtsLine,
+			route: editRoute,
 			type: editType
 		});
 		editing = false;
@@ -48,7 +48,7 @@
 	}
 </script>
 
-<div class="card shadow-sm {trip.type === 'boarded' ? 'bg-primary/10' : 'bg-base-200'}">
+<div class="card shadow-sm {encounter.type === 'boarded' ? 'bg-primary/10' : 'bg-base-200'}">
 	<div class="card-body p-4">
 		{#if editing}
 			<div class="flex flex-col gap-3">
@@ -64,7 +64,7 @@
 					</label>
 					<label class="form-control w-48">
 						<span class="label-text text-xs">Line</span>
-						<select class="select select-bordered select-sm w-full" bind:value={editMtsLine}>
+						<select class="select select-bordered select-sm w-full" bind:value={editRoute}>
 							<option value="">None</option>
 							{#each mtsLines as line}
 								<option value={line.route}>{line.route} - {line.name}</option>
@@ -94,12 +94,12 @@
 		{:else}
 			<div class="flex items-center justify-between">
 				<div class="flex items-center gap-3">
-					<a href="/bus/{trip.busNumber}" class="text-2xl font-bold tabular-nums hover:underline">#{trip.busNumber}</a>
-					{#if trip.mtsLine}
-						<span class="text-base text-base-content/60 font-medium">· Line {trip.mtsLine}</span>
+					<a href="/bus/{encounter.busNumber}" class="text-2xl font-bold tabular-nums hover:underline">#{encounter.busNumber}</a>
+					{#if encounter.route}
+						<span class="text-base text-base-content/60 font-medium">· Line {encounter.route}</span>
 					{/if}
-					<BusModelBadge model={trip.busModel} />
-				{#if trip.type === 'boarded'}
+					<BusModelBadge model={encounter.busModel} />
+				{#if encounter.type === 'boarded'}
 						<span class="inline-flex items-center gap-1 text-sm text-primary">
 							<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 24 24" fill="currentColor">
 								<path d="M4 16c0 .88.39 1.67 1 2.22V20c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1h8v1c0 .55.45 1 1 1h1c.55 0 1-.45 1-1v-1.78c.61-.55 1-1.34 1-2.22V6c0-3.5-3.58-4-8-4s-8 .5-8 4v10zm3.5 1c-.83 0-1.5-.67-1.5-1.5S6.67 14 7.5 14s1.5.67 1.5 1.5S8.33 17 7.5 17zm9 0c-.83 0-1.5-.67-1.5-1.5s.67-1.5 1.5-1.5 1.5.67 1.5 1.5-.67 1.5-1.5 1.5zm1.5-6H6V6h12v5z" />
@@ -121,7 +121,7 @@
 						<button
 							class="btn btn-ghost btn-sm btn-circle"
 							onclick={startEdit}
-							aria-label="Edit trip"
+							aria-label="Edit encounter"
 						>
 							<svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4" viewBox="0 0 20 20" fill="currentColor">
 								<path d="M13.586 3.586a2 2 0 112.828 2.828l-.793.793-2.828-2.828.793-.793zM11.379 5.793L3 14.172V17h2.828l8.38-8.379-2.83-2.828z" />
@@ -131,8 +131,8 @@
 					{#if ondelete}
 						<button
 							class="btn btn-ghost btn-sm btn-circle"
-							onclick={() => ondelete?.(trip.id)}
-							aria-label="Delete trip"
+							onclick={() => ondelete?.(encounter.id)}
+							aria-label="Delete encounter"
 						>
 							<svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" viewBox="0 0 20 20" fill="currentColor">
 								<path fill-rule="evenodd" d="M9 2a1 1 0 00-.894.553L7.382 4H4a1 1 0 000 2v10a2 2 0 002 2h8a2 2 0 002-2V6a1 1 0 100-2h-3.382l-.724-1.447A1 1 0 0011 2H9zM7 8a1 1 0 012 0v6a1 1 0 11-2 0V8zm5-1a1 1 0 00-1 1v6a1 1 0 102 0V8a1 1 0 00-1-1z" clip-rule="evenodd" />
@@ -142,10 +142,10 @@
 				</div>
 			</div>
 			<div class="flex items-center gap-2">
-				<p class="text-sm text-base-content/60">{formatTime(trip.timestamp)}</p>
-				{#if trip.location}
+				<p class="text-sm text-base-content/60">{formatTime(encounter.timestamp)}</p>
+				{#if encounter.location}
 					<a
-						href="https://www.google.com/maps?q={trip.location.latitude},{trip.location.longitude}"
+						href="https://www.google.com/maps?q={encounter.location.latitude},{encounter.location.longitude}"
 						target="_blank"
 						rel="noopener noreferrer"
 						class="inline-flex items-center gap-1 text-sm text-base-content/60 hover:text-primary"

@@ -1,35 +1,35 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
-	import type { TripType } from '$lib/models/types';
-	import TripList from '$lib/components/TripList.svelte';
-	import { tripStore } from '$lib/stores/trip-store.svelte';
+	import type { EncounterType } from '$lib/models/types';
+	import EncounterList from '$lib/components/EncounterList.svelte';
+	import { encounterStore } from '$lib/stores/encounter-store.svelte';
 
 	onMount(() => {
-		tripStore.load();
+		encounterStore.load();
 	});
 
 	async function handleDelete(id: string) {
-		await tripStore.deleteTrip(id);
+		await encounterStore.deleteEncounter(id);
 	}
 
-	async function handleEdit(id: string, updates: { busNumber?: number; mtsLine?: string; type?: TripType }) {
-		await tripStore.updateTrip(id, updates);
+	async function handleEdit(id: string, updates: { busNumber?: number; route?: string; type?: EncounterType }) {
+		await encounterStore.updateEncounter(id, updates);
 	}
 </script>
 
 <div class="flex flex-col gap-4">
-	<h1 class="text-2xl font-bold">Trip History</h1>
+	<h1 class="text-2xl font-bold">Encounter History</h1>
 
-	{#if tripStore.loading}
+	{#if encounterStore.loading}
 		<div class="flex justify-center py-8">
 			<span class="loading loading-spinner loading-lg"></span>
 		</div>
 	{:else}
-		<TripList
-			trips={tripStore.trips}
+		<EncounterList
+			encounters={encounterStore.encounters}
 			ondelete={handleDelete}
 			onedit={handleEdit}
-			emptyMessage="No trips logged yet. Go log your first trip!"
+			emptyMessage="No encounters logged yet. Go log your first encounter!"
 		/>
 	{/if}
 </div>

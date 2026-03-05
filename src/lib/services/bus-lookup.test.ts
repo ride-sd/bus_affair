@@ -4,6 +4,7 @@ import type { BusModel, FleetEntry } from '$lib/models/types';
 
 const testFleet: FleetEntry[] = [
 	{
+		agency: 'MTS',
 		rangeStart: 201,
 		rangeEnd: 223,
 		model: {
@@ -16,6 +17,7 @@ const testFleet: FleetEntry[] = [
 		}
 	},
 	{
+		agency: 'MTS',
 		rangeStart: 301,
 		rangeEnd: 390,
 		model: {
@@ -27,6 +29,7 @@ const testFleet: FleetEntry[] = [
 		}
 	},
 	{
+		agency: 'MTS',
 		rangeStart: 1501,
 		rangeEnd: 1506,
 		model: {
@@ -38,6 +41,7 @@ const testFleet: FleetEntry[] = [
 		}
 	},
 	{
+		agency: 'MTS',
 		rangeStart: 1801,
 		rangeEnd: 1826,
 		model: {
@@ -49,6 +53,7 @@ const testFleet: FleetEntry[] = [
 		}
 	},
 	{
+		agency: 'MTS',
 		rangeStart: 3101,
 		rangeEnd: 3131,
 		model: {

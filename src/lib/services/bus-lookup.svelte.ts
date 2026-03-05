@@ -14,12 +14,19 @@ export function generateModelId(model: BusModel): string {
 		.replace(/^-|-$/g, '');
 }
 
-export function lookupBusModel(busNumber: number): BusModel | null {
-	const entry = fleet.find((e) => busNumber >= e.rangeStart && busNumber <= e.rangeEnd);
+export function lookupBusModel(busNumber: number, agency?: string): BusModel | null {
+	const entry = fleet.find(
+		(e) => busNumber >= e.rangeStart && busNumber <= e.rangeEnd && (!agency || e.agency === agency)
+	);
 	if (!entry) return null;
 	return { id: generateModelId(entry.model), ...entry.model };
 }
 
-export function lookupFleetEntry(busNumber: number): FleetEntry | null {
-	return fleet.find((e) => busNumber >= e.rangeStart && busNumber <= e.rangeEnd) ?? null;
+export function lookupFleetEntry(busNumber: number, agency?: string): FleetEntry | null {
+	return (
+		fleet.find(
+			(e) =>
+				busNumber >= e.rangeStart && busNumber <= e.rangeEnd && (!agency || e.agency === agency)
+		) ?? null
+	);
 }
