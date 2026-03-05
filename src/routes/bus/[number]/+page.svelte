@@ -1,25 +1,25 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { page } from '$app/state';
-	import type { TripType } from '$lib/models/types';
+	import type { EncounterType } from '$lib/models/types';
 	import { lookupFleetEntry } from '$lib/services/bus-lookup.svelte';
-	import { tripStore } from '$lib/stores/trip-store.svelte';
-	import TripList from '$lib/components/TripList.svelte';
+	import { encounterStore } from '$lib/stores/encounter-store.svelte';
+	import EncounterList from '$lib/components/EncounterList.svelte';
 
 	const busNumber = $derived(Number(page.params.number));
-	const entry = $derived(lookupFleetEntry(busNumber));
-	const busTrips = $derived(tripStore.trips.filter((t) => t.busNumber === busNumber));
+	const entry = $derived(lookupFleetEntry(busNumber, 'MTS'));
+	const busEncounters = $derived(encounterStore.encounters.filter((e) => e.busNumber === busNumber));
 
 	onMount(() => {
-		tripStore.load();
+		encounterStore.load();
 	});
 
 	async function handleDelete(id: string) {
-		await tripStore.deleteTrip(id);
+		await encounterStore.deleteEncounter(id);
 	}
 
-	async function handleEdit(id: string, updates: { busNumber?: number; mtsLine?: string; type?: TripType }) {
-		await tripStore.updateTrip(id, updates);
+	async function handleEdit(id: string, updates: { busNumber?: number; route?: string; type?: EncounterType }) {
+		await encounterStore.updateEncounter(id, updates);
 	}
 </script>
 
@@ -65,17 +65,17 @@
 			</div>
 		</div>
 
-		<h2 class="text-xl font-bold">Your Trips</h2>
-		{#if tripStore.loading}
+		<h2 class="text-xl font-bold">Your Encounters</h2>
+		{#if encounterStore.loading}
 			<div class="flex justify-center py-4">
 				<span class="loading loading-spinner loading-md"></span>
 			</div>
 		{:else}
-			<TripList
-				trips={busTrips}
+			<EncounterList
+				encounters={busEncounters}
 				ondelete={handleDelete}
 				onedit={handleEdit}
-				emptyMessage="No trips logged for this bus yet."
+				emptyMessage="No encounters logged for this bus yet."
 			/>
 		{/if}
 	</div>

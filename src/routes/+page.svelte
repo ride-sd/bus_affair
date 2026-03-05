@@ -1,29 +1,29 @@
 <script lang="ts">
-	import type { TripType } from '$lib/models/types';
+	import type { EncounterType } from '$lib/models/types';
 	import { onMount } from 'svelte';
 	import BusNumberInput from '$lib/components/BusNumberInput.svelte';
-	import TripList from '$lib/components/TripList.svelte';
-	import { tripStore } from '$lib/stores/trip-store.svelte';
+	import EncounterList from '$lib/components/EncounterList.svelte';
+	import { encounterStore } from '$lib/stores/encounter-store.svelte';
 	import { getCurrentLocation, requestLocationPermission } from '$lib/services/geolocation';
 
 	onMount(() => {
-		tripStore.load();
+		encounterStore.load();
 		requestLocationPermission();
 	});
 
-	async function handleSubmit(busNumber: number, mtsLine?: string, type?: TripType) {
+	async function handleSubmit(busNumber: number, route?: string, type?: EncounterType) {
 		const location = (await getCurrentLocation()) ?? undefined;
-		await tripStore.addTrip(busNumber, mtsLine, type, location);
+		await encounterStore.addEncounter(busNumber, route, type, location);
 	}
 </script>
 
 <div class="flex flex-col gap-6">
 	<BusNumberInput onsubmit={handleSubmit} />
 
-	{#if tripStore.recentTrips.length > 0}
+	{#if encounterStore.recentEncounters.length > 0}
 		<div>
-			<h2 class="mb-2 text-lg font-semibold text-base-content/70">Recent Trips</h2>
-			<TripList trips={tripStore.recentTrips} />
+			<h2 class="mb-2 text-lg font-semibold text-base-content/70">Recent Encounters</h2>
+			<EncounterList encounters={encounterStore.recentEncounters} />
 		</div>
 	{/if}
 </div>
