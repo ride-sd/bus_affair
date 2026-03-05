@@ -49,4 +49,8 @@
 	<AppShell>
 		{@render children()}
 	</AppShell>
+{:else}
+	<div class="flex min-h-svh items-center justify-center">
+		<a href="/auth/login" class="btn btn-primary">Go to Login</a>
+	</div>
 {/if}
