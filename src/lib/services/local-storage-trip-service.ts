@@ -1,5 +1,5 @@
 import type { GeoLocation, Trip, TripService, TripType } from '$lib/models/types';
-import { lookupBusModel } from './bus-lookup';
+import { lookupBusModel } from './bus-lookup.svelte';
 
 const STORAGE_KEY = 'bus-affair-trips';
 

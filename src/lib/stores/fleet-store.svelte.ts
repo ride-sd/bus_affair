@@ -1,6 +1,6 @@
 import { supabase } from '$lib/supabase';
-import { setFleetData } from '$lib/services/bus-lookup';
-import { setMtsLines } from '$lib/data/mts-lines';
+import { setFleetData } from '$lib/services/bus-lookup.svelte';
+import { setMtsLines } from '$lib/data/mts-lines.svelte';
 import type { FleetEntry, FuelType } from '$lib/models/types';
 
 let loading = $state(true);
@@ -46,7 +46,10 @@ async function fetchRoutes(): Promise<void> {
 		return;
 	}
 
-	setMtsLines((data ?? []).map((row) => ({ route: row.route as string, name: row.name as string })));
+	const lines = (data ?? [])
+		.map((row) => ({ route: row.route as string, name: row.name as string }))
+		.sort((a, b) => a.route.localeCompare(b.route, undefined, { numeric: true }));
+	setMtsLines(lines);
 }
 
 export const fleetStore = {

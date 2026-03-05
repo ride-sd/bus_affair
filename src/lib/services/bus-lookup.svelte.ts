@@ -1,6 +1,6 @@
 import type { BusModel, FleetEntry } from '$lib/models/types';
 
-let fleet: FleetEntry[] = [];
+let fleet: FleetEntry[] = $state([]);
 
 export function setFleetData(data: FleetEntry[]): void {
 	fleet = data;

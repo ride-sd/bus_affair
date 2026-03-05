@@ -3,8 +3,8 @@ export interface MtsLine {
 	name: string;
 }
 
-export let mtsLines: MtsLine[] = [];
+export let mtsLines: MtsLine[] = $state([]);
 
 export function setMtsLines(data: MtsLine[]): void {
-	mtsLines = data;
+	mtsLines.splice(0, mtsLines.length, ...data);
 }

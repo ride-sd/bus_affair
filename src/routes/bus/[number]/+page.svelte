@@ -2,7 +2,7 @@
 	import { onMount } from 'svelte';
 	import { page } from '$app/state';
 	import type { TripType } from '$lib/models/types';
-	import { lookupFleetEntry } from '$lib/services/bus-lookup';
+	import { lookupFleetEntry } from '$lib/services/bus-lookup.svelte';
 	import { tripStore } from '$lib/stores/trip-store.svelte';
 	import TripList from '$lib/components/TripList.svelte';
 

@@ -1,5 +1,5 @@
 import { describe, it, expect, beforeEach } from 'vitest';
-import { generateModelId, lookupBusModel, lookupFleetEntry, setFleetData } from './bus-lookup';
+import { generateModelId, lookupBusModel, lookupFleetEntry, setFleetData } from './bus-lookup.svelte';
 import type { BusModel, FleetEntry } from '$lib/models/types';
 
 const testFleet: FleetEntry[] = [

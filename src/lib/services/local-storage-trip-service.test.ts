@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeEach } from 'vitest';
 import { createLocalStorageTripService } from './local-storage-trip-service';
-import { setFleetData } from './bus-lookup';
+import { setFleetData } from './bus-lookup.svelte';
 import type { TripService } from '$lib/models/types';
 
 // @vitest-environment jsdom

@@ -1,7 +1,7 @@
 <script lang="ts">
 	import type { TripType } from '$lib/models/types';
-	import { lookupBusModel } from '$lib/services/bus-lookup';
-	import { mtsLines } from '$lib/data/mts-lines';
+	import { lookupBusModel } from '$lib/services/bus-lookup.svelte';
+	import { mtsLines } from '$lib/data/mts-lines.svelte';
 	import BusModelBadge from './BusModelBadge.svelte';
 
 	interface Props {
