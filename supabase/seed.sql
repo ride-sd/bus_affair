@@ -1,0 +1,2 @@
+-- Seed data lives in migrations/20260303000000_seed_base_data.sql
+-- so it is applied to all environments via supabase db push.

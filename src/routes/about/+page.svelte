@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { onMount } from 'svelte';
 	import { tripStore } from '$lib/stores/trip-store.svelte';
-	import { generateModelId } from '$lib/services/bus-lookup';
+	import { generateModelId } from '$lib/services/bus-lookup.svelte';
 
 	onMount(() => {
 		tripStore.load();
