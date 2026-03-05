@@ -4,8 +4,8 @@
 
 [context.production.environment]
   PUBLIC_SUPABASE_URL = "https://bmwctnuvuoiseucszgiz.supabase.co"
-  PUBLIC_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImJtd2N0bnV2dW9pc2V1Y3N6Z2l6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzIzODg5MzAsImV4cCI6MjA4Nzk2NDkzMH0.KKMfCuVWVUKRLvjNZfC42AzV5rSFtqd32zhiKGqVLXM"
+  PUBLIC_SUPABASE_PUBLISHABLE_KEY = "sb_publishable_yqJmNVoXxLfdqt6PzO0wAw_pYM4rfxt"
 
 [context.deploy-preview.environment]
   PUBLIC_SUPABASE_URL = "https://hamiqvohjwrnxdhwokve.supabase.co"
-  PUBLIC_SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImhhbWlxdm9oandybnhkaHdva3ZlIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NzI1OTY0ODksImV4cCI6MjA4ODE3MjQ4OX0.qtxYwCmMf6Mzkcrd3cTxzeLNH_X_n_6A-V-BK6EQkgM"
+  PUBLIC_SUPABASE_PUBLISHABLE_KEY = "sb_publishable_KHP8lhfJUZZkX5XDhw7Uww_f9Fuz-_Q"
