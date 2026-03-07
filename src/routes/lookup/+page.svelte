@@ -15,6 +15,7 @@
 
 	<input
 		type="number"
+		inputmode="numeric"
 		class="input input-bordered w-full text-2xl tabular-nums"
 		placeholder="Bus number"
 		bind:value={busNumber}
