@@ -1,0 +1,37 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- Background -->
+  <rect width="512" height="512" rx="112" fill="#2563EB"/>
+
+  <!-- Bus body -->
+  <rect x="72" y="140" width="368" height="232" rx="28" fill="white"/>
+
+  <!-- Roof band -->
+  <rect x="72" y="140" width="368" height="52" rx="28" fill="#DBEAFE"/>
+  <rect x="72" y="168" width="368" height="24" fill="#DBEAFE"/>
+
+  <!-- Windows -->
+  <rect x="96"  y="156" width="84" height="60" rx="10" fill="#93C5FD"/>
+  <rect x="214" y="156" width="84" height="60" rx="10" fill="#93C5FD"/>
+  <rect x="332" y="156" width="84" height="60" rx="10" fill="#93C5FD"/>
+
+  <!-- Door -->
+  <rect x="214" y="248" width="84" height="108" rx="8" fill="#BFDBFE"/>
+  <rect x="254" y="248" width="4"  height="108" fill="white" opacity="0.6"/>
+
+  <!-- Undercarriage band -->
+  <rect x="72" y="344" width="368" height="28" fill="#DBEAFE"/>
+  <rect x="72" y="356" width="368" height="16" rx="0" fill="#DBEAFE"/>
+  <rect x="72" y="364" width="368" height="8"  rx="0" ry="28" fill="#BFDBFE"/>
+
+  <!-- Wheels -->
+  <circle cx="156" cy="392" r="48" fill="#0F172A"/>
+  <circle cx="156" cy="392" r="26" fill="#334155"/>
+  <circle cx="156" cy="392" r="10" fill="#94A3B8"/>
+
+  <circle cx="356" cy="392" r="48" fill="#0F172A"/>
+  <circle cx="356" cy="392" r="26" fill="#334155"/>
+  <circle cx="356" cy="392" r="10" fill="#94A3B8"/>
+
+  <!-- Headlight -->
+  <rect x="408" y="292" width="28" height="16" rx="6" fill="#FEF08A"/>
+</svg>
