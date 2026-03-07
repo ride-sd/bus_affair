@@ -11,6 +11,7 @@
 	let { children }: Props = $props();
 
 	const isHome = $derived(page.url.pathname === '/');
+	const isLookup = $derived(page.url.pathname === '/lookup');
 	const isHistory = $derived(page.url.pathname === '/history');
 	const isAbout = $derived(page.url.pathname === '/about');
 
@@ -43,6 +44,12 @@
 
 	<!-- Bottom dock nav -->
 	<div class="dock dock-bottom">
+		<a href="/lookup" class:active={isLookup}>
+			<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+				<path stroke-linecap="round" stroke-linejoin="round" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+			</svg>
+			<span class="dock-label">Lookup</span>
+		</a>
 		<a href="/" class:active={isHome}>
 			<svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
 				<path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4" />

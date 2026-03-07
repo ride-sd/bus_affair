@@ -11,6 +11,7 @@
 	let { children } = $props();
 
 	const isAuthPage = $derived(page.url.pathname.startsWith('/auth/'));
+	const isPublicPage = $derived(page.url.pathname === '/lookup');
 	let encounterStoreInitialized = false;
 
 	onMount(() => {
@@ -24,12 +25,12 @@
 		const path = page.url.pathname;
 		const onAuthPage = path.startsWith('/auth/');
 
-		if (!authStore.user && !onAuthPage) {
-			goto('/auth/login');
-		} else if (authStore.user && !authStore.profile && !onAuthPage) {
+		if (!authStore.user && !onAuthPage && !isPublicPage) {
+			goto('/lookup');
+		} else if (authStore.user && !authStore.profile && !onAuthPage && !isPublicPage) {
 			// Stale session — profile no longer exists (e.g. after db reset)
 			authStore.signOut();
-			goto('/auth/login');
+			goto('/lookup');
 		} else if (authStore.user && authStore.profile && !authStore.profile.approved && path !== '/auth/pending') {
 			goto('/auth/pending');
 		} else if (authStore.user && authStore.profile?.approved && !encounterStoreInitialized) {
@@ -49,8 +50,20 @@
 	<AppShell>
 		{@render children()}
 	</AppShell>
+{:else if isPublicPage}
+	<div class="flex min-h-svh flex-col bg-base-100">
+		<header class="navbar bg-primary text-primary-content shadow-md">
+			<div class="flex-1">
+				<span class="text-xl font-bold">Bus Affair</span>
+			</div>
+			<a href="/auth/login" class="btn btn-ghost btn-sm">Sign In</a>
+		</header>
+		<main class="flex-1 p-4">
+			{@render children()}
+		</main>
+	</div>
 {:else}
 	<div class="flex min-h-svh items-center justify-center">
-		<a href="/auth/login" class="btn btn-primary">Go to Login</a>
+		<a href="/lookup" class="btn btn-primary">Go to App</a>
 	</div>
 {/if}
