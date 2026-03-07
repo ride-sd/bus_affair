@@ -3,6 +3,7 @@
 	import { encounterStore } from '$lib/stores/encounter-store.svelte';
 	import { supabase } from '$lib/supabase';
 	import { authStore } from '$lib/stores/auth-store.svelte';
+	import { themeStore } from '$lib/stores/theme-store.svelte';
 	import type { Encounter } from '$lib/models/types';
 
 	const LOCAL_STORAGE_KEY = 'bus-affair-trips';
@@ -223,6 +224,36 @@
 			{#if importStatus}
 				<p class="mt-2 text-sm text-base-content/70">{importStatus}</p>
 			{/if}
+		</div>
+	</div>
+
+	<div class="card bg-base-200 shadow-sm">
+		<div class="card-body">
+			<h2 class="card-title">Appearance</h2>
+			<p class="text-base-content/70">Choose your preferred color scheme.</p>
+			<div class="join mt-2">
+				<button
+					class="btn join-item btn-sm flex-1"
+					class:btn-active={themeStore.theme === 'light'}
+					onclick={() => themeStore.set('light')}
+				>
+					Light
+				</button>
+				<button
+					class="btn join-item btn-sm flex-1"
+					class:btn-active={themeStore.theme === 'dark'}
+					onclick={() => themeStore.set('dark')}
+				>
+					Dark
+				</button>
+				<button
+					class="btn join-item btn-sm flex-1"
+					class:btn-active={themeStore.theme === 'system'}
+					onclick={() => themeStore.set('system')}
+				>
+					System
+				</button>
+			</div>
 		</div>
 	</div>
 

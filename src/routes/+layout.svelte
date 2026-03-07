@@ -7,6 +7,7 @@
 	import { authStore } from '$lib/stores/auth-store.svelte';
 	import { encounterStore } from '$lib/stores/encounter-store.svelte';
 	import { fleetStore } from '$lib/stores/fleet-store.svelte';
+	import { themeStore } from '$lib/stores/theme-store.svelte';
 
 	let { children } = $props();
 
@@ -15,6 +16,7 @@
 	let encounterStoreInitialized = false;
 
 	onMount(() => {
+		themeStore.init();
 		fleetStore.init();
 		authStore.init();
 	});
