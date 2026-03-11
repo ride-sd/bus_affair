@@ -1,6 +1,7 @@
 export type FuelType = 'CNG' | 'Electric' | 'Diesel' | 'LPG' | 'Gasoline';
 
 export type EncounterType = 'seen' | 'boarded';
+export type SyncStatus = 'synced' | 'pending' | 'failed';
 
 export interface BusModel {
 	id?: string;
@@ -27,6 +28,7 @@ export interface Encounter {
 	agency: string;
 	type?: EncounterType;
 	location?: GeoLocation;
+	syncStatus?: SyncStatus;
 }
 
 export interface FleetEntry {

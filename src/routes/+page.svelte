@@ -23,7 +23,7 @@
 	{#if encounterStore.recentEncounters.length > 0}
 		<div>
 			<h2 class="mb-2 text-lg font-semibold text-base-content/70">Recent Encounters</h2>
-			<EncounterList encounters={encounterStore.recentEncounters} />
+			<EncounterList encounters={encounterStore.recentEncounters} onretry={(id) => encounterStore.retryEncounter(id)} />
 		</div>
 	{/if}
 </div>
