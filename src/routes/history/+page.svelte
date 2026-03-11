@@ -15,6 +15,10 @@
 	async function handleEdit(id: string, updates: { busNumber?: number; route?: string; type?: EncounterType }) {
 		await encounterStore.updateEncounter(id, updates);
 	}
+
+	async function handleRetry(id: string) {
+		await encounterStore.retryEncounter(id);
+	}
 </script>
 
 <div class="flex flex-col gap-4">
@@ -29,6 +33,7 @@
 			encounters={encounterStore.encounters}
 			ondelete={handleDelete}
 			onedit={handleEdit}
+			onretry={handleRetry}
 			emptyMessage="No encounters logged yet. Go log your first encounter!"
 		/>
 	{/if}

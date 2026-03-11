@@ -22,6 +22,10 @@
 	async function handleEdit(id: string, updates: { busNumber?: number; route?: string; type?: EncounterType }) {
 		await encounterStore.updateEncounter(id, updates);
 	}
+
+	async function handleRetry(id: string) {
+		await encounterStore.retryEncounter(id);
+	}
 </script>
 
 {#if entry}
@@ -53,6 +57,7 @@
 				encounters={busEncounters}
 				ondelete={handleDelete}
 				onedit={handleEdit}
+				onretry={handleRetry}
 				emptyMessage="No encounters logged for this bus yet."
 			/>
 		{/if}
