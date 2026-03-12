@@ -103,8 +103,9 @@ export const encounterStore = {
 	},
 
 	async load() {
+		if (!service) return;
 		loading = true;
-		const synced = await requireService().getEncounters();
+		const synced = await service.getEncounters();
 		encounters = mergeWithOutbox(synced);
 		loading = false;
 	},
