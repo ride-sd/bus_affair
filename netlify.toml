@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build"
+  command = "npm run build && curl --silent -X POST https://api.honeybadger.io/v1/deploys -F api_key=$PUBLIC_HONEYBADGER_API_KEY -F deploy[environment]=$PUBLIC_HONEYBADGER_ENVIRONMENT -F deploy[revision]=$COMMIT_REF -F deploy[repository]=$REPOSITORY_URL"
   publish = "build"
 
 [build.environment]
