@@ -14,18 +14,25 @@ export default defineConfig({
 		rollupOptions: {
 			plugins: isProduction && apiKey
 				? [
-						// eslint-disable-next-line @typescript-eslint/no-explicit-any
-						HoneybadgerSourceMapPlugin({
-							apiKey,
-							assetsUrl: process.env.DEPLOY_PRIME_URL ?? process.env.URL ?? 'http://localhost:5173',
-							revision,
-							silent: false,
-						retries: 3,
-							deploy: {
-								environment: process.env.PUBLIC_HONEYBADGER_ENVIRONMENT ?? 'production',
-								repository: process.env.REPOSITORY_URL
-							}
-						}) as any
+						// Upload for both the stable PR preview URL and the unique deploy URL so
+						// source maps resolve regardless of which URL the user accessed.
+						...[process.env.DEPLOY_PRIME_URL, process.env.DEPLOY_URL]
+							.filter((url): url is string => !!url)
+							.map((assetsUrl, i) =>
+								// eslint-disable-next-line @typescript-eslint/no-explicit-any
+								HoneybadgerSourceMapPlugin({
+									apiKey,
+									assetsUrl,
+									revision,
+									silent: false,
+									retries: 3,
+									// Only send deploy notification once
+									deploy: i === 0 ? {
+										environment: process.env.PUBLIC_HONEYBADGER_ENVIRONMENT ?? 'production',
+										repository: process.env.REPOSITORY_URL
+									} : false
+								}) as any
+							)
 					]
 				: []
 		}
