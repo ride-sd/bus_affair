@@ -16,7 +16,7 @@ export default defineConfig({
 				? [
 						// Upload for both the stable PR preview URL and the unique deploy URL so
 						// source maps resolve regardless of which URL the user accessed.
-						...[process.env.DEPLOY_PRIME_URL, process.env.DEPLOY_URL]
+						...[process.env.SITE_URL, process.env.DEPLOY_PRIME_URL, process.env.DEPLOY_URL]
 							.filter((url): url is string => !!url)
 							.map((assetsUrl, i) =>
 								// eslint-disable-next-line @typescript-eslint/no-explicit-any
