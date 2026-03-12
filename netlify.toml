@@ -2,6 +2,9 @@
   command = "npm run build"
   publish = "build"
 
+[build.environment]
+  PUBLIC_HONEYBADGER_API_KEY = "hbp_3Qw5xkDPS6kaP6PTKSBynEsW3FTY202yJFGy"
+
 [[redirects]]
   from = "/*"
   to = "/index.html"
@@ -10,7 +13,9 @@
 [context.production.environment]
   PUBLIC_SUPABASE_URL = "https://bmwctnuvuoiseucszgiz.supabase.co"
   PUBLIC_SUPABASE_PUBLISHABLE_KEY = "sb_publishable_yqJmNVoXxLfdqt6PzO0wAw_pYM4rfxt"
+  PUBLIC_HONEYBADGER_ENVIRONMENT = "production"
 
 [context.deploy-preview.environment]
   PUBLIC_SUPABASE_URL = "https://hamiqvohjwrnxdhwokve.supabase.co"
   PUBLIC_SUPABASE_PUBLISHABLE_KEY = "sb_publishable_KHP8lhfJUZZkX5XDhw7Uww_f9Fuz-_Q"
+  PUBLIC_HONEYBADGER_ENVIRONMENT = "preview"
