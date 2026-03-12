@@ -19,7 +19,8 @@ export default defineConfig({
 							apiKey,
 							assetsUrl: process.env.DEPLOY_URL ?? 'http://localhost:5173',
 							revision,
-							retries: 3,
+							silent: false,
+						retries: 3,
 							deploy: {
 								environment: process.env.PUBLIC_HONEYBADGER_ENVIRONMENT ?? 'production',
 								repository: process.env.REPOSITORY_URL
