@@ -14,6 +14,7 @@
   PUBLIC_SUPABASE_URL = "https://bmwctnuvuoiseucszgiz.supabase.co"
   PUBLIC_SUPABASE_PUBLISHABLE_KEY = "sb_publishable_yqJmNVoXxLfdqt6PzO0wAw_pYM4rfxt"
   PUBLIC_HONEYBADGER_ENVIRONMENT = "production"
+  SITE_URL = "https://busaffair.com"
 
 [context.deploy-preview.environment]
   PUBLIC_SUPABASE_URL = "https://hamiqvohjwrnxdhwokve.supabase.co"
