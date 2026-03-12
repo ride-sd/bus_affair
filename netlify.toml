@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build"
+  command = "echo \"DEPLOY_URL=$DEPLOY_URL DEPLOY_PRIME_URL=$DEPLOY_PRIME_URL\" && npm run build"
   publish = "build"
 
 [build.environment]

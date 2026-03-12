@@ -3,9 +3,14 @@ declare module '@honeybadger-io/rollup-plugin' {
 	function HoneybadgerSourceMapPlugin(options: {
 		apiKey: string;
 		assetsUrl: string;
-		revision: string;
+		revision?: string;
 		silent?: boolean;
 		retries?: number;
+		deploy?: boolean | {
+			environment?: string;
+			repository?: string;
+			localUsername?: string;
+		};
 	}): Plugin;
 	export default HoneybadgerSourceMapPlugin;
 }
