@@ -5,6 +5,7 @@
 	import { authStore } from '$lib/stores/auth-store.svelte';
 	import { themeStore } from '$lib/stores/theme-store.svelte';
 	import type { Encounter } from '$lib/models/types';
+	import Honeybadger from '@honeybadger-io/js';
 
 	const LOCAL_STORAGE_KEY = 'bus-affair-trips';
 
@@ -287,6 +288,20 @@
 				<p class="text-base-content/70">Manage users and approve new account requests.</p>
 				<div class="card-actions mt-2">
 					<a href="/admin" class="btn btn-neutral btn-sm">Open Admin Panel</a>
+				</div>
+			</div>
+		</div>
+	{/if}
+
+	{#if authStore.profile?.is_admin}
+		<div class="card bg-base-200 shadow-sm">
+			<div class="card-body">
+				<h2 class="card-title">Diagnostics</h2>
+				<p class="text-base-content/70">Send a test error to Honeybadger to verify error reporting is working.</p>
+				<div class="card-actions mt-2">
+					<button class="btn btn-neutral btn-sm" onclick={() => Honeybadger.notify('Test error from Bus Affair about page')}>
+						Send test error
+					</button>
 				</div>
 			</div>
 		</div>
