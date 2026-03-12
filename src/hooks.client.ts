@@ -5,7 +5,8 @@ import type { HandleClientError } from '@sveltejs/kit';
 Honeybadger.configure({
 	apiKey: PUBLIC_HONEYBADGER_API_KEY,
 	environment: PUBLIC_HONEYBADGER_ENVIRONMENT,
-	revision: import.meta.env.VITE_COMMIT_REF ?? 'development'
+	revision: import.meta.env.VITE_COMMIT_REF ?? 'development',
+	projectRoot: '/'
 });
 
 export const handleError: HandleClientError = ({ error, event }) => {
