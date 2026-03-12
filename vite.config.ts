@@ -17,7 +17,7 @@ export default defineConfig({
 						// eslint-disable-next-line @typescript-eslint/no-explicit-any
 						HoneybadgerSourceMapPlugin({
 							apiKey,
-							assetsUrl: process.env.DEPLOY_URL ?? 'http://localhost:5173',
+							assetsUrl: process.env.DEPLOY_PRIME_URL ?? process.env.URL ?? 'http://localhost:5173',
 							revision,
 							silent: false,
 						retries: 3,
