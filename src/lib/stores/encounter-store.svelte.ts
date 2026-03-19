@@ -62,7 +62,8 @@ async function syncToBackend(item: OutboxItem): Promise<void> {
 			item.busNumber,
 			item.route,
 			item.type,
-			item.location
+			item.location,
+			item.timestamp
 		);
 		removeFromOutbox(item.id);
 		encounters = encounters.map((e) =>

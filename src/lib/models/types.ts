@@ -40,7 +40,7 @@ export interface FleetEntry {
 
 export interface EncounterService {
 	getEncounters(): Promise<Encounter[]>;
-	addEncounter(busNumber: number, route?: string, type?: EncounterType, location?: GeoLocation): Promise<Encounter>;
+	addEncounter(busNumber: number, route?: string, type?: EncounterType, location?: GeoLocation, timestamp?: string): Promise<Encounter>;
 	updateEncounter(id: string, updates: { busNumber?: number; route?: string; type?: EncounterType }): Promise<Encounter>;
 	deleteEncounter(id: string): Promise<void>;
 	clearAllEncounters(): Promise<void>;
