@@ -84,7 +84,8 @@ export function createSupabaseEncounterService(userId: string): EncounterService
 			busNumber: number,
 			route?: string,
 			type?: EncounterType,
-			location?: GeoLocation
+			location?: GeoLocation,
+			timestamp?: string
 		): Promise<Encounter> {
 			const agency = 'MTS';
 			const { data: busModelId } = await supabase.rpc('lookup_bus_model', {
@@ -104,7 +105,8 @@ export function createSupabaseEncounterService(userId: string): EncounterService
 					route_id: routeId,
 					type: type ?? 'seen',
 					latitude: location?.latitude ?? null,
-					longitude: location?.longitude ?? null
+					longitude: location?.longitude ?? null,
+					...(timestamp && { created_at: timestamp })
 				})
 				.select(ENCOUNTER_SELECT)
 				.single();
