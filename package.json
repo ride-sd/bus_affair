@@ -29,6 +29,6 @@
 	"dependencies": {
 		"@honeybadger-io/js": "^6.12.3",
 		"@honeybadger-io/rollup-plugin": "^5.10.1",
-		"@supabase/supabase-js": "^2.99.3"
+		"@supabase/supabase-js": "^2.100.1"
 	}
 }
